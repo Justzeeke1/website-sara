@@ -88,6 +88,18 @@
     "success": "Richiesta inviata con successo! Ti contatterò presto.",
     "error": "Errore nell'invio della richiesta. Riprova più tardi."
   },
+  "about": {
+    "title": "Chi Sono",
+    "subtitle": "La mia passione per l'arte digitale e la creatività",
+    "name": "Artista Illustratore",
+    "role": "Illustratore Digitale",
+    "avatarAlt": "Foto profilo dell'artista",
+    "storyTitle": "La Mia Storia",
+    "description1": "Sono un'illustratrice digitale appassionata che trasforma idee e sogni in opere d'arte uniche. La mia passione per l'arte è nata fin da bambina e si è evoluta nel tempo attraverso lo studio e la sperimentazione con diverse tecniche digitali.",
+    "description2": "Ogni progetto è per me un'opportunità di raccontare una storia, di catturare emozioni e di creare qualcosa di veramente speciale. Amo lavorare a stretto contatto con i miei clienti per dare vita alle loro visioni artistiche.",
+    "experience": "Anni di Esperienza",
+    "projects": "Progetti Completati"
+  },
   "notFound": {
     "title": "404",
     "message": "Oops! Pagina non trovata",

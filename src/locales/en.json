@@ -88,6 +88,18 @@
     "success": "Request sent successfully! I'll contact you soon.",
     "error": "Error sending request. Please try again later."
   },
+  "about": {
+    "title": "About Me",
+    "subtitle": "My passion for digital art and creativity",
+    "name": "Digital Artist",
+    "role": "Digital Illustrator",
+    "avatarAlt": "Artist profile picture",
+    "storyTitle": "My Story",
+    "description1": "I'm a passionate digital illustrator who transforms ideas and dreams into unique works of art. My passion for art started as a child and has evolved over time through study and experimentation with different digital techniques.",
+    "description2": "Each project is an opportunity for me to tell a story, capture emotions, and create something truly special. I love working closely with my clients to bring their artistic visions to life.",
+    "experience": "Years of Experience",
+    "projects": "Completed Projects"
+  },
   "notFound": {
     "title": "404",
     "message": "Oops! Page not found",
