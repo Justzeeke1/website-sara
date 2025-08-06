@@ -4,6 +4,7 @@ import { Menu, X, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
+import logo from '../assets/logo.png'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,8 +29,9 @@ const Navigation = () => {
             to="/" 
             className="flex items-center space-x-2 text-primary hover:text-primary-glow transition-colors"
           >
-            <Palette className="h-6 w-6" />
-            <span className="font-serif text-xl font-semibold">ArtStudio</span>
+            {/* <Palette className="h-6 w-6" /> */}
+            <img src={logo} height={50} width={50}/>
+            <span className="font-serif text-xl font-semibold">Art by Saretta</span>
           </Link>
 
           {/* Desktop Navigation */}

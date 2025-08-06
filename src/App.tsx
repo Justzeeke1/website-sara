@@ -8,6 +8,7 @@ import Illustrazioni from "./pages/Illustrazioni";
 import Portachiavi from "./pages/Portachiavi";
 import Commissioni from "./pages/Commissioni";
 import NotFound from "./pages/NotFound";
+import Navigation from "./components/Navigation";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+      <Navigation/>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/illustrazioni" element={<Illustrazioni />} />

@@ -4,6 +4,7 @@ import { Eye, Heart } from "lucide-react";
 import illustration1 from "@/assets/sample-illustration-1.jpg";
 import illustration2 from "@/assets/sample-illustration-2.jpg";
 import illustration3 from "@/assets/sample-illustration-3.jpg";
+import { useTranslation } from "react-i18next";
 
 const illustrations = [
   {
@@ -63,13 +64,16 @@ const illustrations = [
 ];
 
 const Illustrazioni = () => {
+
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen pt-16">
       {/* Header Section */}
       <section className="section-artistic py-20">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-            Le Mie Illustrazioni
+          {t('illustrations.title')}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Una collezione di opere che spaziano dall'acquerello al digitale, 
