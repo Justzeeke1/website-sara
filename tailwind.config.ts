@@ -78,6 +78,11 @@ export default {
 				'artistic': '0 8px 32px hsl(320 35% 25% / 0.15)',
 				'glow': '0 0 30px hsl(320 50% 65% / 0.3)'
 			},
+			backgroundImage: {
+				'gradient-primary': 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)))',
+				'gradient-hero': 'linear-gradient(135deg, hsl(320 35% 25% / 0.95), hsl(10 60% 75% / 0.9))',
+				'gradient-accent': 'linear-gradient(45deg, hsl(var(--accent)), hsl(15 55% 80%))'
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
