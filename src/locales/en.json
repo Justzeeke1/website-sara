@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Home",
+    "illustrations": "Illustrations",
+    "keychains": "Keychains",
+    "commissions": "Commissions"
+  },
+  "hero": {
+    "welcome": "Welcome to my artistic world",
+    "title": "Creative Illustrator",
+    "description": "Specialized in unique digital illustrations, personalized artistic keychains and custom creative commissions.",
+    "discover": "Discover my works",
+    "commission": "Commission an artwork"
+  },
+  "illustrations": {
+    "title": "My Illustrations",
+    "subtitle": "A collection of digital artworks that tell stories through art",
+    "categories": {
+      "character": "Character",
+      "fantasy": "Fantasy",
+      "portrait": "Portrait"
+    },
+    "views": "views",
+    "likes": "likes",
+    "cta": {
+      "title": "Have an idea for an illustration?",
+      "description": "Contact me for a personalized commission",
+      "button": "Request Quote"
+    }
+  },
+  "keychains": {
+    "title": "Artistic Keychains",
+    "subtitle": "Unique handmade keychains crafted with love and attention to detail",
+    "price": "€",
+    "rating": "stars",
+    "reviews": "reviews",
+    "addToCart": "Add to Cart",
+    "unavailable": "Unavailable",
+    "features": {
+      "title": "Why Choose My Keychains",
+      "handmade": {
+        "title": "Handmade",
+        "description": "Each keychain is crafted with care and attention to detail"
+      },
+      "durable": {
+        "title": "Quality Materials",
+        "description": "I only use durable and long-lasting materials"
+      },
+      "unique": {
+        "title": "Unique Designs",
+        "description": "Each design is original and created exclusively by me"
+      }
+    },
+    "cta": {
+      "title": "Want a Custom Keychain?",
+      "description": "Contact me to create a unique keychain for you",
+      "button": "Order Custom"
+    }
+  },
+  "commissions": {
+    "title": "Commissions",
+    "subtitle": "Transform your ideas into art with personalized commissions",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your@email.com"
+      },
+      "type": {
+        "label": "Commission Type",
+        "placeholder": "Select commission type",
+        "options": {
+          "digital": "Digital Illustration",
+          "portrait": "Custom Portrait",
+          "keychain": "Custom Keychain",
+          "other": "Other"
+        }
+      },
+      "description": {
+        "label": "Project Description",
+        "placeholder": "Describe your idea in detail..."
+      },
+      "submit": "Send Request"
+    },
+    "success": "Request sent successfully! I'll contact you soon.",
+    "error": "Error sending request. Please try again later."
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "backHome": "Return to Home"
+  }
+}

@@ -2,18 +2,21 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => location.pathname === path;
 
   const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/illustrazioni", label: "Illustrazioni" },
-    { path: "/portachiavi", label: "Portachiavi" },
-    { path: "/commissioni", label: "Commissioni" },
+    { path: "/", label: t('nav.home') },
+    { path: "/illustrazioni", label: t('nav.illustrations') },
+    { path: "/portachiavi", label: t('nav.keychains') },
+    { path: "/commissioni", label: t('nav.commissions') },
   ];
 
   return (
@@ -42,10 +45,12 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
             <Button
               variant="ghost"
               size="sm"

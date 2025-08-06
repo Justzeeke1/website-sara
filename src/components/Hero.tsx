@@ -1,9 +1,12 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import heroImage from "@/assets/hero-illustration.jpg";
 
 const Hero = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -22,25 +25,24 @@ const Hero = () => {
         <div className="animate-fade-in-up">
           <div className="flex items-center justify-center mb-6">
             <Sparkles className="h-8 w-8 text-accent mr-3 animate-float" />
-            <span className="text-accent font-medium text-lg">Benvenuto nel mio mondo artistico</span>
+            <span className="text-accent font-medium text-lg">{t('hero.welcome')}</span>
           </div>
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 animate-stagger-1">
-            Illustratrice
+            {t('hero.title').split(' ')[0]}
             <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Creativa
+              {t('hero.title').split(' ')[1]}
             </span>
           </h1>
           
           <p className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed animate-stagger-2">
-            Trasformo idee in arte attraverso illustrazioni uniche, 
-            portachiavi personalizzati e progetti su commissione
+            {t('hero.description')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-stagger-3">
             <Link to="/illustrazioni">
               <Button className="btn-hero group">
-                Scopri le mie opere
+                {t('hero.discover')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -50,7 +52,7 @@ const Hero = () => {
                 size="lg"
                 className="border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                Commissiona un'opera
+                {t('hero.commission')}
               </Button>
             </Link>
           </div>

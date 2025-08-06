@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Home",
+    "illustrations": "Illustrazioni",
+    "keychains": "Portachiavi",
+    "commissions": "Commissioni"
+  },
+  "hero": {
+    "welcome": "Benvenuta nel mio mondo artistico",
+    "title": "Illustratrice Creativa",
+    "description": "Specializzata in illustrazioni digitali uniche, portachiavi artistici personalizzati e commissioni creative su misura.",
+    "discover": "Scopri le mie opere",
+    "commission": "Commissiona un'opera"
+  },
+  "illustrations": {
+    "title": "Le Mie Illustrazioni",
+    "subtitle": "Una collezione di opere digitali che raccontano storie attraverso l'arte",
+    "categories": {
+      "character": "Personaggio",
+      "fantasy": "Fantasy",
+      "portrait": "Ritratto"
+    },
+    "views": "visualizzazioni",
+    "likes": "mi piace",
+    "cta": {
+      "title": "Hai un'idea per un'illustrazione?",
+      "description": "Contattami per una commissione personalizzata",
+      "button": "Richiedi Preventivo"
+    }
+  },
+  "keychains": {
+    "title": "Portachiavi Artistici",
+    "subtitle": "Portachiavi unici fatti a mano con amore e attenzione ai dettagli",
+    "price": "€",
+    "rating": "stelle",
+    "reviews": "recensioni",
+    "addToCart": "Aggiungi al Carrello",
+    "unavailable": "Non Disponibile",
+    "features": {
+      "title": "Perché Scegliere i Miei Portachiavi",
+      "handmade": {
+        "title": "Fatti a Mano",
+        "description": "Ogni portachiavi è realizzato con cura e attenzione ai dettagli"
+      },
+      "durable": {
+        "title": "Materiali di Qualità",
+        "description": "Utilizzo solo materiali resistenti e durevoli nel tempo"
+      },
+      "unique": {
+        "title": "Design Unici",
+        "description": "Ogni design è originale e creato esclusivamente da me"
+      }
+    },
+    "cta": {
+      "title": "Vuoi un Portachiavi Personalizzato?",
+      "description": "Contattami per creare un portachiavi unico per te",
+      "button": "Ordina Personalizzato"
+    }
+  },
+  "commissions": {
+    "title": "Commissioni",
+    "subtitle": "Trasforma le tue idee in arte con commissioni personalizzate",
+    "form": {
+      "name": {
+        "label": "Nome",
+        "placeholder": "Il tuo nome"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "la.tua@email.com"
+      },
+      "type": {
+        "label": "Tipo di Commissione",
+        "placeholder": "Seleziona il tipo di commissione",
+        "options": {
+          "digital": "Illustrazione Digitale",
+          "portrait": "Ritratto Personalizzato",
+          "keychain": "Portachiavi Personalizzato",
+          "other": "Altro"
+        }
+      },
+      "description": {
+        "label": "Descrizione del Progetto",
+        "placeholder": "Descrivi la tua idea in dettaglio..."
+      },
+      "submit": "Invia Richiesta"
+    },
+    "success": "Richiesta inviata con successo! Ti contatterò presto.",
+    "error": "Errore nell'invio della richiesta. Riprova più tardi."
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Pagina non trovata",
+    "backHome": "Torna alla Home"
+  }
+}
