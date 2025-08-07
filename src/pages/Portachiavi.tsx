@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Star } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import config from '../configs/config.json';
 import { fetchKeychains } from '../api/firebase.js';
 import { useTranslation } from "react-i18next";
@@ -70,28 +71,64 @@ const Portachiavi = () => {
                 key={keychain.id} 
                 className={`portfolio-card animate-fade-in-up animate-stagger-${(index % 3) + 1}`}
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={getImageSrc(keychain.image)}
-                    alt={keychain.title[lang] || keychain.title["en"]}
-                    className="w-full h-70 object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  {!keychain.available && !keychain.preorder && (
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                      <Badge variant="destructive" className="text-white">
-                        {t("keychains.unavailable")}
-                      </Badge>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button type="button" className="relative overflow-hidden group w-full">
+                      <img
+                        src={getImageSrc(keychain.image)}
+                        alt={keychain.title[lang] || keychain.title["en"]}
+                        className="w-full h-70 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      {!keychain.available && !keychain.preorder && (
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                          <Badge variant="destructive" className="text-white">
+                            {t("keychains.unavailable")}
+                          </Badge>
+                        </div>
+                      )}
+                      <div className="absolute top-4 right-4">
+                        <Badge className="bg-white/90 text-foreground shadow-soft hover:bg-white/90 cursor-default">
+                          {new Intl.NumberFormat('it-IT', {
+                            style: 'currency',
+                            currency: 'EUR',
+                          }).format(keychain.price)}
+                        </Badge>
+                      </div>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl">
+                    <DialogHeader>
+                      <DialogTitle>{keychain.title[lang] || keychain.title["en"]}</DialogTitle>
+                      <DialogDescription>{keychain.description[lang] || keychain.description["en"]}</DialogDescription>
+                    </DialogHeader>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <img
+                        src={getImageSrc(keychain.image)}
+                        alt={keychain.title[lang] || keychain.title["en"]}
+                        className="w-full h-auto object-contain rounded-lg"
+                        loading="lazy"
+                      />
+                      <div>
+                        <div className="mb-4">
+                          <Badge className="bg-white/90 text-foreground shadow-soft hover:bg-white/90 cursor-default">
+                            {new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(keychain.price)}
+                          </Badge>
+                        </div>
+                        <p className="text-muted-foreground mb-6">
+                          {keychain.description[lang] || keychain.description["en"]}
+                        </p>
+                        <Button
+                          className={`w-full ${keychain.available || keychain.preorder ? "btn-hero" : "bg-gray-400 cursor-not-allowed"}`}
+                          disabled={!keychain.available && !keychain.preorder}
+                          onClick={() => handleClick(keychain.title[lang] || keychain.title["en"], keychain.preorder)}
+                        >
+                          <ShoppingCart className="h-4 w-4 mr-2" />
+                          {keychain.available ? t("keychains.buy") : keychain.preorder ? t("keychains.preorder") : t("keychains.unavailable")}
+                        </Button>
+                      </div>
                     </div>
-                  )}
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-white/90 text-foreground shadow-soft hover:bg-white/90 cursor-default">
-                      {new Intl.NumberFormat('it-IT', {
-                        style: 'currency',
-                        currency: 'EUR',
-                      }).format(keychain.price)}
-                    </Badge>
-                  </div>
-                </div>
+                  </DialogContent>
+                </Dialog>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div>

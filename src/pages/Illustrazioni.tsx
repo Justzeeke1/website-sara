@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { ShoppingCart } from "lucide-react";
 const fallbackImage = "/placeholder.jpg";
 import config from "../configs/config.json";
-import { Button } from "@/components/ui/button.js";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const imageMap = import.meta.glob("/src/assets/*", {
   eager: true,
@@ -65,13 +66,49 @@ const Illustrazioni = () => {
                 key={illustration.id}
                 className={`portfolio-card animate-fade-in-up animate-stagger-${(index % 3) + 1}`}
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={getImageSrc(illustration.image)}
-                    alt={illustration.title?.[lang] || ""}
-                    className="w-full h-80 object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                </div>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button type="button" className="relative overflow-hidden group w-full">
+                      <img
+                        src={getImageSrc(illustration.image)}
+                        alt={illustration.title?.[lang] || ""}
+                        className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl">
+                    <DialogHeader>
+                      <DialogTitle>{illustration.title?.[lang] || ""}</DialogTitle>
+                      <DialogDescription>{illustration.description?.[lang] || ""}</DialogDescription>
+                    </DialogHeader>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <img
+                        src={getImageSrc(illustration.image)}
+                        alt={illustration.title?.[lang] || ""}
+                        className="w-full h-auto object-contain rounded-lg"
+                        loading="lazy"
+                      />
+                      <div>
+                        {illustration.category?.[lang]?.length ? (
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {illustration.category?.[lang]?.map((cat) => (
+                              <Badge key={cat} variant="secondary" className="bg-gradient-accent text-white">
+                                {cat}
+                              </Badge>
+                            ))}
+                          </div>
+                        ) : null}
+                        <p className="text-muted-foreground mb-6">
+                          {illustration.description?.[lang] || ""}
+                        </p>
+                        <Button className="btn-hero w-full" onClick={() => handleClick(illustration.title?.[lang] || "")}>
+                          <ShoppingCart className="h-4 w-4 mr-2" />
+                          {t("illustrations.cta.button")}
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-xl font-semibold text-foreground">
