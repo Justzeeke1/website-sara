@@ -109,7 +109,7 @@ const Portachiavi = () => {
                         ? "btn-hero" 
                         : "bg-gray-400 cursor-not-allowed"
                     }`}
-                    disabled={!keychain.available && !keychain.preorder}
+                    disabled={!keychain.available && !keychain.preorder}test
                     onClick={() => handleClick(keychain.title[lang] || keychain.title["en"], keychain.preorder)}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
