@@ -103,7 +103,7 @@ const Portachiavi = () => {
                       <DialogDescription>{keychain.description[lang] || keychain.description["en"]}</DialogDescription>
                     </DialogHeader>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
+                      <div className="relative">
                         <Carousel className="w-full">
                           <CarouselContent>
                             {(keychain.images?.length ? keychain.images : [keychain.image]).map((img) => (
@@ -117,8 +117,8 @@ const Portachiavi = () => {
                               </CarouselItem>
                             ))}
                           </CarouselContent>
-                          <CarouselPrevious />
-                          <CarouselNext />
+                          <CarouselPrevious className="left-2" />
+                          <CarouselNext className="right-2" />
                         </Carousel>
                       </div>
                       <div>

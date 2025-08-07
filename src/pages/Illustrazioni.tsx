@@ -88,7 +88,7 @@ const Illustrazioni = () => {
                       <DialogDescription>{illustration.description?.[lang] || ""}</DialogDescription>
                     </DialogHeader>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
+                      <div className="relative">
                         <Carousel className="w-full">
                           <CarouselContent>
                             {(illustration.images?.length ? illustration.images : [illustration.image]).map((img) => (
@@ -102,8 +102,8 @@ const Illustrazioni = () => {
                               </CarouselItem>
                             ))}
                           </CarouselContent>
-                          <CarouselPrevious />
-                          <CarouselNext />
+                          <CarouselPrevious className="left-2" />
+                          <CarouselNext className="right-2" />
                         </Carousel>
                       </div>
                       <div>
