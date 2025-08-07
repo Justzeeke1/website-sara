@@ -22,6 +22,12 @@
       "portrait": "Ritratto"
     },
     "orderMessage":"Ciao! Mi interessa l'illustrazione",
+    "format": {
+      "label": "Formato",
+      "options": { "A4": "A4", "A5": "A5", "A6": "A6" },
+      "append": "Formato: {{format}}"
+    },
+    "priceLabel": "Prezzo",
     "cta": {
       "title": "Ti piace il mio stile?",
       "description": "Posso creare un'illustrazione personalizzata per te. Contattami per discutere il tuo progetto!",
@@ -32,6 +38,7 @@
     "title": "Portachiavi Artistici",
     "subtitle": "Porta sempre con te un pezzo della mia arte! Portachiavi in acrilico con le mie illustrazioni originali, perfetti come regalo o per personalizzare le tue chiavi.",
     "price": "€",
+    "priceLabel": "Prezzo",
     "buy":"Lo voglio!",
     "preorder":"Preordina",
     "unavailable": "Non Disponibile",

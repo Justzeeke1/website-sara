@@ -22,6 +22,12 @@
       "portrait": "Portrait"
     },
     "orderMessage":"Ciao! I'm interested in illustration",
+    "format": {
+      "label": "Format",
+      "options": { "A4": "A4", "A5": "A5", "A6": "A6" },
+      "append": "Format: {{format}}"
+    },
+    "priceLabel": "Price",
     "cta": {
       "title": "Do you like my style?",
       "description": "I can create a custom illustration for you. Contact me to discuss your project!",
@@ -32,6 +38,7 @@
     "title": "Artistic Keychains",
     "subtitle": "Carry a piece of my art with you wherever you go! Acrylic keychains featuring my original illustrations, perfect as gifts or to personalize your keys.",
     "price": "€",
+    "priceLabel": "Price",
     "buy":"I Want It!",
     "preorder":"Preorder",
     "unavailable": "Unavailable",

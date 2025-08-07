@@ -8,6 +8,8 @@ const fallbackImage = "/placeholder.jpg";
 import config from "../configs/config.json";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const imageMap = import.meta.glob("/src/assets/*", {
   eager: true,
@@ -24,6 +26,7 @@ const getImageSrc = (fileName: string): string => {
 const Illustrazioni = () => {
   const { t, i18n } = useTranslation();
   const [illustrations, setIllustrations] = useState([]);
+  const [formatById, setFormatById] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const getAllIllustrations = async () => {
@@ -34,8 +37,11 @@ const Illustrazioni = () => {
     getAllIllustrations();
   }, []);
 
-  const handleClick = (title: string) => {
+  const handleClick = (title: string, format?: string) => {
     let message = `${t("illustrations.orderMessage")} ${title}.`;
+    if (format) {
+      message += ` ${t("illustrations.format.append", { format })}`;
+    }
     const encodedMessage = encodeURIComponent(message);
     const link = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
     window.open(link, '_blank');
@@ -76,19 +82,39 @@ const Illustrazioni = () => {
                       />
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-3xl">
+                  <DialogContent className="max-w-4xl">
                     <DialogHeader>
                       <DialogTitle>{illustration.title?.[lang] || ""}</DialogTitle>
                       <DialogDescription>{illustration.description?.[lang] || ""}</DialogDescription>
                     </DialogHeader>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <img
-                        src={getImageSrc(illustration.image)}
-                        alt={illustration.title?.[lang] || ""}
-                        className="w-full h-auto object-contain rounded-lg"
-                        loading="lazy"
-                      />
                       <div>
+                        <Carousel className="w-full">
+                          <CarouselContent>
+                            {(illustration.images?.length ? illustration.images : [illustration.image]).map((img) => (
+                              <CarouselItem key={img}>
+                                <img
+                                  src={getImageSrc(img)}
+                                  alt={illustration.title?.[lang] || ""}
+                                  className="w-full h-auto object-contain rounded-lg"
+                                  loading="lazy"
+                                />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious />
+                          <CarouselNext />
+                        </Carousel>
+                      </div>
+                      <div>
+                        {illustration.price ? (
+                          <div className="mb-4">
+                            <div className="text-sm text-muted-foreground">{t("illustrations.priceLabel", { defaultValue: "Prezzo" })}</div>
+                            <div className="text-2xl font-bold">
+                              {new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(illustration.price)}
+                            </div>
+                          </div>
+                        ) : null}
                         {illustration.category?.[lang]?.length ? (
                           <div className="flex flex-wrap gap-2 mb-4">
                             {illustration.category?.[lang]?.map((cat) => (
@@ -98,10 +124,23 @@ const Illustrazioni = () => {
                             ))}
                           </div>
                         ) : null}
-                        <p className="text-muted-foreground mb-6">
-                          {illustration.description?.[lang] || ""}
-                        </p>
-                        <Button className="btn-hero w-full" onClick={() => handleClick(illustration.title?.[lang] || "")}>
+                        <div className="space-y-4 mb-6">
+                          <label className="text-sm font-medium text-foreground">{t("illustrations.format.label", { defaultValue: "Formato" })}</label>
+                          <Select
+                            defaultValue={formatById[illustration.id] || "A4"}
+                            onValueChange={(v) => setFormatById((prev) => ({ ...prev, [illustration.id]: v }))}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Formato" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {['A4','A5','A6'].map((f) => (
+                                <SelectItem key={f} value={f}>{t(`illustrations.format.options.${f}`, { defaultValue: f })}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <Button className="btn-hero w-full" onClick={() => handleClick(illustration.title?.[lang] || "", formatById[illustration.id] || "A4")}>
                           <ShoppingCart className="h-4 w-4 mr-2" />
                           {t("illustrations.cta.button")}
                         </Button>

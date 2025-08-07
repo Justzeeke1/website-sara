@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Star } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import config from '../configs/config.json';
 import { fetchKeychains } from '../api/firebase.js';
 import { useTranslation } from "react-i18next";
@@ -96,23 +97,36 @@ const Portachiavi = () => {
                       </div>
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-3xl">
+                  <DialogContent className="max-w-4xl">
                     <DialogHeader>
                       <DialogTitle>{keychain.title[lang] || keychain.title["en"]}</DialogTitle>
                       <DialogDescription>{keychain.description[lang] || keychain.description["en"]}</DialogDescription>
                     </DialogHeader>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <img
-                        src={getImageSrc(keychain.image)}
-                        alt={keychain.title[lang] || keychain.title["en"]}
-                        className="w-full h-auto object-contain rounded-lg"
-                        loading="lazy"
-                      />
+                      <div>
+                        <Carousel className="w-full">
+                          <CarouselContent>
+                            {(keychain.images?.length ? keychain.images : [keychain.image]).map((img) => (
+                              <CarouselItem key={img}>
+                                <img
+                                  src={getImageSrc(img)}
+                                  alt={keychain.title[lang] || keychain.title["en"]}
+                                  className="w-full h-auto object-contain rounded-lg"
+                                  loading="lazy"
+                                />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious />
+                          <CarouselNext />
+                        </Carousel>
+                      </div>
                       <div>
                         <div className="mb-4">
-                          <Badge className="bg-white/90 text-foreground shadow-soft hover:bg-white/90 cursor-default">
+                          <div className="text-sm text-muted-foreground">{t("keychains.priceLabel", { defaultValue: "Prezzo" })}</div>
+                          <div className="text-2xl font-bold">
                             {new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(keychain.price)}
-                          </Badge>
+                          </div>
                         </div>
                         <p className="text-muted-foreground mb-6">
                           {keychain.description[lang] || keychain.description["en"]}
