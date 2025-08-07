@@ -1,6 +1,7 @@
 import { Heart, Palette, Coffee } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useTranslation } from 'react-i18next';
+import logo from '../assets/logo.png'
 
 const AboutMe = () => {
   const { t } = useTranslation();
@@ -22,19 +23,16 @@ const AboutMe = () => {
           <div className="text-center lg:text-left">
             <div className="flex justify-center lg:justify-start mb-8">
               <div className="relative">
-                <Avatar className="w-40 h-40 shadow-artistic border-4 border-primary/20">
+                <Avatar className="shadow-artistic border-4 border-primary/20" style={{height: "20rem", width: "20rem"}}>
                   <AvatarImage 
-                    src="/placeholder.svg" 
+                    src={logo} 
                     alt={t('about.avatarAlt')}
                     className="object-cover"
                   />
                   <AvatarFallback className="text-2xl font-bold bg-gradient-primary text-primary-foreground">
-                    AI
+                    Logo
                   </AvatarFallback>
                 </Avatar>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-accent rounded-full flex items-center justify-center shadow-soft">
-                  <Heart className="h-4 w-4 text-accent-foreground" />
-                </div>
               </div>
             </div>
             
@@ -64,8 +62,11 @@ const AboutMe = () => {
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     {t('about.description1')}
                   </p>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
                     {t('about.description2')}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {t('about.description3')}
                   </p>
                 </div>
               </div>
@@ -73,11 +74,11 @@ const AboutMe = () => {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-card rounded-xl p-6 shadow-soft border border-border/50">
-                <div className="text-2xl font-bold text-primary mb-1">5+</div>
+                <div className="text-2xl font-bold text-primary mb-1">3+</div>
                 <div className="text-sm text-muted-foreground">{t('about.experience')}</div>
               </div>
               <div className="bg-card rounded-xl p-6 shadow-soft border border-border/50">
-                <div className="text-2xl font-bold text-accent mb-1">100+</div>
+                <div className="text-2xl font-bold text-accent mb-1">40+</div>
                 <div className="text-sm text-muted-foreground">{t('about.projects')}</div>
               </div>
             </div>

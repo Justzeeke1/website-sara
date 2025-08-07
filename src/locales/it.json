@@ -3,11 +3,12 @@
     "home": "Home",
     "illustrations": "Illustrazioni",
     "keychains": "Portachiavi",
-    "commissions": "Commissioni"
+    "commissions": "Commissioni",
+    "aboutme":"About Me"
   },
   "hero": {
     "welcome": "Benvenut* nel mio mondo artistico",
-    "title": "Illustratrice Creativa",
+    "title": "Sara De Masi",
     "description": "Specializzata in illustrazioni digitali uniche, portachiavi artistici personalizzati e commissioni creative su misura.",
     "discover": "Scopri le mie opere",
     "commission": "Commissiona un'opera"
@@ -20,70 +21,109 @@
       "fantasy": "Fantasy",
       "portrait": "Ritratto"
     },
-    "views": "visualizzazioni",
-    "likes": "mi piace",
+    "orderMessage":"Ciao! Mi interessa l'illustrazione",
     "cta": {
-      "title": "Hai un'idea per un'illustrazione?",
-      "description": "Contattami per una commissione personalizzata",
-      "button": "Richiedi Preventivo"
+      "title": "Ti piace il mio stile?",
+      "description": "Posso creare un'illustrazione personalizzata per te. Contattami per discutere il tuo progetto!",
+      "button": "Richiedi una commissione"
     }
   },
   "keychains": {
     "title": "Portachiavi Artistici",
-    "subtitle": "Portachiavi unici fatti a mano con amore e attenzione ai dettagli",
+    "subtitle": "Porta sempre con te un pezzo della mia arte! Portachiavi in acrilico con le mie illustrazioni originali, perfetti come regalo o per personalizzare le tue chiavi.",
     "price": "€",
-    "rating": "stelle",
-    "reviews": "recensioni",
-    "addToCart": "Aggiungi al Carrello",
+    "buy":"Lo voglio!",
+    "preorder":"Preordina",
     "unavailable": "Non Disponibile",
     "features": {
-      "title": "Perché Scegliere i Miei Portachiavi",
-      "handmade": {
-        "title": "Fatti a Mano",
-        "description": "Ogni portachiavi è realizzato con cura e attenzione ai dettagli"
+      "title": "Perché scegliere i miei portachiavi?",
+      "unique": {
+        "title": "Illustrazioni Originali",
+        "description": "Ogni design è originale e creato esclusivamente da me"
       },
       "durable": {
         "title": "Materiali di Qualità",
-        "description": "Utilizzo solo materiali resistenti e durevoli nel tempo"
+        "description": "Acrilico resistente e stampa ad alta definizione per una durata nel tempo"
       },
-      "unique": {
-        "title": "Design Unici",
-        "description": "Ogni design è originale e creato esclusivamente da me"
+      "shipping": {
+        "title": "Spedizione Rapida",
+        "description": "Preparazione veloce e spedizione sicura in tutta Europa"
       }
     },
     "cta": {
-      "title": "Vuoi un Portachiavi Personalizzato?",
-      "description": "Contattami per creare un portachiavi unico per te",
-      "button": "Ordina Personalizzato"
+      "title": "Vuoi un design personalizzato?",
+      "description": "Posso creare portachiavi unici con le tue idee!",
+      "button": "Richiedi un portachiavi personalizzato"
+    },
+    "order": {
+      "preorderMessage": "Ciao! Vorrei preordinare il portachiavi",
+      "orderMessage": "Ciao! Mi interessa il portachiavi"
     }
   },
   "commissions": {
     "title": "Commissioni",
-    "subtitle": "Trasforma le tue idee in arte con commissioni personalizzate",
+    "subtitle": "Dai vita alle tue idee! Collaboriamo insieme per creare l'opera d'arte perfetta per te, che si tratti di un tuo personaggio, un logo o un'illustrazione unica.",
+    "sectionTitle": "I miei servizi",
+    "sectionSubtitle": "Scegli il servizio più adatto alle tue esigenze",
+    "features": {
+      "title": "Come Funziona",
+      "description": "Un processo semplice e trasparente per la tua commissione",
+      "step1": {
+        "title": "Contatto",
+        "description": "Compila il modulo con i dettagli del tuo progetto"
+      },
+      "step2": {
+        "title": "Preventivo",
+        "description": "Ricevi un preventivo personalizzato entro 24 ore"
+      },
+      "step3": {
+        "title": "Creazione",
+        "description": "Inizio a lavorare sulla tua opera dopo l'acconto"
+      },
+      "step4": {
+        "title": "Consegna",
+        "description": "Ricevi la tua commissione completata"
+      }
+    },
     "form": {
+      "title": "Richiedi la tua commissione",
+      "subtitle": "Compila il modulo sottostante con tutti i dettagli del tuo progetto",
       "name": {
-        "label": "Nome",
-        "placeholder": "Il tuo nome"
+        "label": "Nome Completo *",
+        "placeholder": "Nome e Cognome"
       },
       "email": {
-        "label": "Email",
+        "label": "Email *",
         "placeholder": "la.tua@email.com"
       },
+      "phone": {
+        "label": "Telefono",
+        "placeholder": "Numero di telefono"
+      },
       "type": {
-        "label": "Tipo di Commissione",
-        "placeholder": "Seleziona il tipo di commissione",
-        "options": {
-          "digital": "Illustrazione Digitale",
-          "portrait": "Ritratto Personalizzato",
-          "keychain": "Portachiavi Personalizzato",
-          "other": "Altro"
-        }
+        "label": "Tipo di Servizio *",
+        "placeholder": "Seleziona un servizio",
+        "optionsOther": "Altro (specifica nella descrizione)"
       },
       "description": {
-        "label": "Descrizione del Progetto",
-        "placeholder": "Descrivi la tua idea in dettaglio..."
+        "label": "Descrizione del Progetto *",
+        "placeholder": "Descrivi dettagliatamente cosa vorresti che realizzassi..."
+      },
+      "budget" : {
+        "label": "Budget indicativo",
+        "placeholder": "es. €50-100"
+      },
+      "deadline": {
+        "label": "Scadenza desiderata",
+        "placeholder": ""
       },
       "submit": "Invia Richiesta"
+    },
+    "contacts":{
+      "title": "Altri modi per contattarmi",
+      "email": "Email",
+      "whatsapp": "Whatsapp",
+      "instagram": "Instagram"
     },
     "success": "Richiesta inviata con successo! Ti contatterò presto.",
     "error": "Errore nell'invio della richiesta. Riprova più tardi."
@@ -91,12 +131,13 @@
   "about": {
     "title": "Chi Sono",
     "subtitle": "La mia passione per l'arte digitale e la creatività",
-    "name": "Artista Illustratore",
-    "role": "Illustratore Digitale",
+    "name": "Sara De Masi 🌸",
+    "role": "Illustratrice Digitale",
     "avatarAlt": "Foto profilo dell'artista",
     "storyTitle": "La Mia Storia",
-    "description1": "Sono un'illustratrice digitale appassionata che trasforma idee e sogni in opere d'arte uniche. La mia passione per l'arte è nata fin da bambina e si è evoluta nel tempo attraverso lo studio e la sperimentazione con diverse tecniche digitali.",
-    "description2": "Ogni progetto è per me un'opportunità di raccontare una storia, di catturare emozioni e di creare qualcosa di veramente speciale. Amo lavorare a stretto contatto con i miei clienti per dare vita alle loro visioni artistiche.",
+    "description1": "Ciao! Mi chiamo Sara, sono un’illustratrice e adoro disegnare personaggi ispirati al mondo anime e fantasy.",
+    "description2":"Fin da piccola ho sempre amato disegnare e, affascinata dall’arte e dalle bellezze che nascondeva, ho continuato a dare sfogo alla mia creatività. Quando disegno mi piace giocare con le sfumature e creare  linee pulite e tondeggianti per valorizzare ogni dettaglio e rendere il disegno d'impatto.",
+    "description3": "Ogni progetto è per me un'opportunità di raccontare una storia, di catturare emozioni e di creare qualcosa di veramente speciale. Amo lavorare a stretto contatto con i miei clienti per dare vita alle loro visioni artistiche.",
     "experience": "Anni di Esperienza",
     "projects": "Progetti Completati"
   },

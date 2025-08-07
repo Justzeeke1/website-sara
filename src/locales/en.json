@@ -3,11 +3,12 @@
     "home": "Home",
     "illustrations": "Illustrations",
     "keychains": "Keychains",
-    "commissions": "Commissions"
+    "commissions": "Commissions",
+    "aboutme":"About Me"
   },
   "hero": {
     "welcome": "Welcome to my artistic world",
-    "title": "Creative Illustrator",
+    "title": "Sara De Masi",
     "description": "Specialized in unique digital illustrations, personalized artistic keychains and custom creative commissions.",
     "discover": "Discover my works",
     "commission": "Commission an artwork"
@@ -20,70 +21,109 @@
       "fantasy": "Fantasy",
       "portrait": "Portrait"
     },
-    "views": "views",
-    "likes": "likes",
+    "orderMessage":"Ciao! I'm interested in illustration",
     "cta": {
-      "title": "Have an idea for an illustration?",
-      "description": "Contact me for a personalized commission",
-      "button": "Request Quote"
+      "title": "Do you like my style?",
+      "description": "I can create a custom illustration for you. Contact me to discuss your project!",
+      "button": "Request a commission"
     }
   },
   "keychains": {
     "title": "Artistic Keychains",
-    "subtitle": "Unique handmade keychains crafted with love and attention to detail",
+    "subtitle": "Carry a piece of my art with you wherever you go! Acrylic keychains featuring my original illustrations, perfect as gifts or to personalize your keys.",
     "price": "€",
-    "rating": "stars",
-    "reviews": "reviews",
-    "addToCart": "Add to Cart",
+    "buy":"I Want It!",
+    "preorder":"Preorder",
     "unavailable": "Unavailable",
     "features": {
-      "title": "Why Choose My Keychains",
-      "handmade": {
-        "title": "Handmade",
-        "description": "Each keychain is crafted with care and attention to detail"
-      },
-      "durable": {
-        "title": "Quality Materials",
-        "description": "I only use durable and long-lasting materials"
-      },
+      "title": "Why choose my keychains?",
       "unique": {
         "title": "Unique Designs",
         "description": "Each design is original and created exclusively by me"
+      },
+      "durable": {
+        "title": "Quality Materials",
+        "description": "Durable acrylic and high-definition printing for long-lasting durability"
+      },
+      "shipping": {
+        "title": "Fast Shipping",
+        "description": "Fast preparation and secure shipping throughout Europe"
       }
     },
     "cta": {
-      "title": "Want a Custom Keychain?",
-      "description": "Contact me to create a unique keychain for you",
-      "button": "Order Custom"
+      "title": "Want a custom design?",
+      "description": "I can create unique keychains based on your ideas!",
+      "button": "Request a personalized keychain"
+    },
+    "order": {
+      "preorderMessage": "Hi! I would like to pre-order the keychain",
+      "orderMessage": "Hi! I am interested in the keychain"
     }
   },
   "commissions": {
     "title": "Commissions",
-    "subtitle": "Transform your ideas into art with personalized commissions",
+    "subtitle": "Bring your ideas to life! Let's work together to create the perfect piece of art for you, whether it's your character, logo, or unique illustration.",
+    "sectionTitle": "My services",
+    "sectionSubtitle": "Choose the service that best suits your needs",
+    "features": {
+      "title": "How it works",
+      "description": "A simple and transparent process for your commission",
+      "step1": {
+        "title": "Contact",
+        "description": "Fill out the form with your project details"
+      },
+      "step2": {
+        "title": "Quote",
+        "description": "Receive a personalized quote within 24 hours"
+      },
+      "step3": {
+        "title": "Cration",
+        "description": "I will start working on your piece after receiving the deposit."
+      },
+      "step4": {
+        "title": "Delivery",
+        "description": "Receive your completed commission"
+      }
+    },
     "form": {
+      "title": "Request your commission",
+      "subtitle": "Fill out the form below with all the details of your project.",
       "name": {
-        "label": "Name",
-        "placeholder": "Your name"
+        "label": "Full name *",
+        "placeholder": "Name and Surname"
       },
       "email": {
-        "label": "Email",
+        "label": "Email *",
         "placeholder": "your@email.com"
       },
+      "phone": {
+        "label": "Telephone",
+        "placeholder": "Phone number"
+      },
       "type": {
-        "label": "Commission Type",
-        "placeholder": "Select commission type",
-        "options": {
-          "digital": "Digital Illustration",
-          "portrait": "Custom Portrait",
-          "keychain": "Custom Keychain",
-          "other": "Other"
-        }
+        "label": "Type of Service *",
+        "placeholder": "Select a service",
+        "optionsOther": "Other (specify in the description)"
       },
       "description": {
-        "label": "Project Description",
-        "placeholder": "Describe your idea in detail..."
+        "label": "Project Description *",
+        "placeholder": "Describe in detail what you would like me to do..."
+      },
+      "budget" : {
+        "label": "Indicative budget",
+        "placeholder": "ex. €50-100"
+      },
+      "deadline": {
+        "label": "Desired deadline",
+        "placeholder": ""
       },
       "submit": "Send Request"
+    },
+    "contacts":{
+      "title": "Other ways to contact me",
+      "email": "Email",
+      "whatsapp": "Whatsapp",
+      "instagram": "Instagram"
     },
     "success": "Request sent successfully! I'll contact you soon.",
     "error": "Error sending request. Please try again later."
@@ -91,12 +131,13 @@
   "about": {
     "title": "About Me",
     "subtitle": "My passion for digital art and creativity",
-    "name": "Digital Artist",
+    "name": "Sara De Masi 🌸",
     "role": "Digital Illustrator",
     "avatarAlt": "Artist profile picture",
     "storyTitle": "My Story",
-    "description1": "I'm a passionate digital illustrator who transforms ideas and dreams into unique works of art. My passion for art started as a child and has evolved over time through study and experimentation with different digital techniques.",
-    "description2": "Each project is an opportunity for me to tell a story, capture emotions, and create something truly special. I love working closely with my clients to bring their artistic visions to life.",
+    "description1": "Hi! My name is Sara, I am an illustrator, and I love drawing characters inspired by the world of anime and fantasy.",
+    "description2": "Ever since I was little, I have always loved drawing, and fascinated by art and the beauty it conceals, I have continued to give free rein to my creativity. When I draw, I like to play with shades and create clean, rounded lines to enhance every detail and make the drawing striking.",
+    "description3": "Each project is an opportunity for me to tell a story, capture emotions, and create something truly special. I love working closely with my clients to bring their artistic visions to life.",
     "experience": "Years of Experience",
     "projects": "Completed Projects"
   },

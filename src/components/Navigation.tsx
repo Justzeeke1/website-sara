@@ -18,6 +18,7 @@ const Navigation = () => {
     { path: "/illustrazioni", label: t('nav.illustrations') },
     { path: "/portachiavi", label: t('nav.keychains') },
     { path: "/commissioni", label: t('nav.commissions') },
+    { path: "/aboutme", label: t('nav.aboutme') },
   ];
 
   return (

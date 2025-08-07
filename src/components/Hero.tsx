@@ -2,7 +2,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import heroImage from "@/assets/hero-illustration.jpg";
+import heroImage from "@/assets/WallpaperPatternHomepage.png";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -31,7 +31,7 @@ const Hero = () => {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 animate-stagger-1">
             {t('hero.title').split(' ')[0]}
             <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              {t('hero.title').split(' ')[1]}
+              {t('hero.title').split(' ')[1] + " " + t('hero.title').split(' ')[2]}
             </span>
           </h1>
           

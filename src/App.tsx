@@ -9,6 +9,7 @@ import Portachiavi from "./pages/Portachiavi";
 import Commissioni from "./pages/Commissioni";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
+import AboutMe from "./components/AboutMe";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/illustrazioni" element={<Illustrazioni />} />
           <Route path="/portachiavi" element={<Portachiavi />} />
           <Route path="/commissioni" element={<Commissioni />} />
+          <Route path="/aboutme" element={<AboutMe />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
