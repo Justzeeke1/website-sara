@@ -10,6 +10,7 @@ import Commissioni from "./pages/Commissioni";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
 import AboutMe from "./components/AboutMe";
+import { ScrollToTop } from "./lib/utils";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Navigation/>
         <Routes>
           <Route path="/" element={<Index />} />

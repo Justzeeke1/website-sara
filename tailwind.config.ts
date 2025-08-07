@@ -21,6 +21,7 @@ export default {
 			fontFamily: {
 				'serif': ['Playfair Display', 'serif'],
 				'sans': ['Inter', 'sans-serif'],
+				'playwrite': ['"Playwrite AU QLD"', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

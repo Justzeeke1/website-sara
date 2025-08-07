@@ -10,7 +10,7 @@ const AboutMe = () => {
     <section className="section-artistic py-20">
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-playwrite font-normal text-4xl sm:text-5xl font-bold text-foreground mb-4">
             {t('about.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -36,7 +36,7 @@ const AboutMe = () => {
               </div>
             </div>
             
-            <h3 className="text-2xl font-bold text-foreground mb-4">
+            <h3 className="font-playwrite font-normal text-2xl font-bold text-foreground mb-4">
               {t('about.name')}
             </h3>
             
@@ -56,7 +56,7 @@ const AboutMe = () => {
                   <Coffee className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-3">
+                  <h4 className="font-playwrite font-normal text-lg text-foreground mb-3">
                     {t('about.storyTitle')}
                   </h4>
                   <p className="text-muted-foreground leading-relaxed mb-4">

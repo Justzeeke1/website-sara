@@ -12,6 +12,7 @@ import config from '../configs/config.json';
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { MdAlternateEmail } from "react-icons/md";
 import { fetchServices } from "../api/firebase.js";
+import emailjs from "@emailjs/browser";
 
 const Commissioni = () => {
   const { t, i18n } = useTranslation();
@@ -41,21 +42,57 @@ const Commissioni = () => {
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Richiesta inviata!",
-      description: "Ti risponderò entro 24 ore con un preventivo dettagliato.",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      description: "",
-      budget: "",
-      deadline: ""
-    });
+  e.preventDefault();
+  const { t } = useTranslation();
+
+  const message = t("emailBody", {
+    name: formData.name,
+    email: formData.email,
+    phone: formData.phone,
+    service: formData.service,
+    description: formData.description,
+    budget: formData.budget,
+    deadline: formData.deadline
+  });
+
+  const serviceId = 'YOUR_SERVICE_ID';
+  const templateId = 'YOUR_TEMPLATE_ID';
+  const publicKey = 'YOUR_PUBLIC_KEY';
+
+  const templateParams = {
+    to_email: config.email,
+    from_name: formData.name,
+    from_email: formData.email,
+    message: message
   };
+
+  emailjs.send(serviceId, templateId, templateParams, publicKey)
+    .then(() => {
+      toast({
+        title: "Richiesta inviata!",
+        description: "Ti risponderò entro 24 ore con un preventivo dettagliato.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        description: "",
+        budget: "",
+        deadline: ""
+      });
+    })
+    .catch((error) => {
+      toast({
+        title: "Errore nell'invio",
+        description: "Qualcosa è andato storto. Riprova più tardi.",
+        variant: "destructive"
+      });
+      console.error('Email invio fallito:', error);
+    });
+};
+
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -66,7 +103,7 @@ const Commissioni = () => {
       {/* Header Section */}
       <section className="section-artistic py-20">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
+          <h1 className="font-playwrite font-normal text-4xl sm:text-5xl font-bold text-foreground mb-6">
             {t("commissions.title")}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -79,7 +116,7 @@ const Commissioni = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">{t("commissions.sectionTitle")}</h2>
+            <h2 className="font-playwrite font-normal text-3xl font-bold text-foreground mb-4">{t("commissions.sectionTitle")}</h2>
             <p className="text-lg text-muted-foreground">
               {t("commissions.sectionSubtitle")}
             </p>
@@ -93,7 +130,7 @@ const Commissioni = () => {
               >
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-xl text-foreground">
+                    <CardTitle className="font-playwrite font-normal text-xl text-foreground">
                       {service.title?.[lang] || service.title?.en}
                     </CardTitle>
                     <Badge className="bg-gradient-accent text-white">
@@ -128,7 +165,7 @@ const Commissioni = () => {
       <section className="section-artistic py-16">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">{t("commissions.features.title")}</h2>
+            <h2 className="font-playwrite font-normal text-3xl font-bold text-foreground mb-4">{t("commissions.features.title")}</h2>
             <p className="text-lg text-muted-foreground">
               {t("commissions.features.description")}
             </p>
@@ -140,7 +177,7 @@ const Commissioni = () => {
                 <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">
                   {step}
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{t(`commissions.features.step${step}.title`)}</h3>
+                <h3 className="font-playwrite font-normal text-lg mb-2">{t(`commissions.features.step${step}.title`)}</h3>
                 <p className="text-muted-foreground text-sm">{t(`commissions.features.step${step}.description`)}</p>
               </div>
             ))}
@@ -153,7 +190,7 @@ const Commissioni = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="shadow-artistic">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl text-foreground mb-4">
+              <CardTitle className="font-playwrite font-normal text-3xl text-foreground mb-4">
                 {t("commissions.form.title")}
               </CardTitle>
               <p className="text-muted-foreground">
@@ -264,7 +301,7 @@ const Commissioni = () => {
       {/* Contact Info Section */}
       <section className="section-artistic py-16">
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
+          <h2 className="font-playwrite font-normal text-3xl font-bold text-foreground mb-8">
             {t("commissions.contacts.title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -272,21 +309,21 @@ const Commissioni = () => {
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4">
                 <MdAlternateEmail className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{t("commissions.contacts.email")}</h3>
+              <h3 className="font-playwrite font-normal text-lg mb-2">{t("commissions.contacts.email")}</h3>
               <p className="text-muted-foreground">{config.email}</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-gradient-accent rounded-full flex items-center justify-center mb-4">
                 <FaWhatsapp className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{t("commissions.contacts.whatsapp")}</h3>
+              <h3 className="font-playwrite font-normal text-lg mb-2">{t("commissions.contacts.whatsapp")}</h3>
               <p className="text-muted-foreground">+39 {config.phoneNumber}</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4">
                 <FaInstagram className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{t("commissions.contacts.instagram")}</h3>
+              <h3 className="font-playwrite font-normal text-lg mb-2">{t("commissions.contacts.instagram")}</h3>
               <p className="text-muted-foreground">{config.instagram}</p>
             </div>
           </div>

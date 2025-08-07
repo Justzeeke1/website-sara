@@ -21,11 +21,11 @@
       "fantasy": "Fantasy",
       "portrait": "Portrait"
     },
-    "orderMessage":"Ciao! I'm interested in illustration",
+    "orderMessage":"Hi! I'm interested in illustration",
     "format": {
       "label": "Format",
       "options": { "A4": "A4", "A5": "A5", "A6": "A6" },
-      "append": "Format: {{format}}"
+      "append": "format {{format}}"
     },
     "priceLabel": "Price",
     "cta": {
@@ -35,13 +35,18 @@
     }
   },
   "keychains": {
-    "title": "Artistic Keychains",
+    "title": "Keychains",
     "subtitle": "Carry a piece of my art with you wherever you go! Acrylic keychains featuring my original illustrations, perfect as gifts or to personalize your keys.",
     "price": "€",
     "priceLabel": "Price",
     "buy":"I Want It!",
     "preorder":"Preorder",
     "unavailable": "Unavailable",
+    "details": {
+      "row1": "Double sided clear acrylic keychain",
+      "row2": "~5cm height",
+      "row3": "Metal ring included"
+    },
     "features": {
       "title": "Why choose my keychains?",
       "unique": {
@@ -124,7 +129,15 @@
         "label": "Desired deadline",
         "placeholder": ""
       },
-      "submit": "Send Request"
+      "submit": "Send Request",
+      "emailBody": "Hi {{name}},\n\nThank you for contacting me and for choosing my {{service}} service.\n\nHere are the details I received:\n\n- Name: {{name}}\n- Email: {{email}}\n- Phone: {{phone}}\n- Service: {{service}}\n- Description/Notes: {{description}}\n- Budget: €{{budget}}\n- Deadline: {{deadline}}\n\nThe description you provided helps me understand exactly what you need, and I’ll do my best to meet the deadline.\n\nIf I need any more details, I’ll contact you directly. In the meantime, feel free to reply to this email if you have any updates.\n\nBest regards,\nSara De Masi",
+      "toast": {
+        "successTitle": "Request sent!",
+        "successDescription": "I will get back to you within 24 hours with a detailed quote.",
+        "failureTitle": "Sending error",
+        "failureDescription": "Something went wrong. Please try again later.",
+        "variant": "destructive"
+      }
     },
     "contacts":{
       "title": "Other ways to contact me",

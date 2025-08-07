@@ -32,7 +32,7 @@ const Navigation = () => {
           >
             {/* <Palette className="h-6 w-6" /> */}
             <img src={logo} height={50} width={50}/>
-            <span className="font-serif text-xl font-semibold">Art by Saretta</span>
+            <span className="font-playwrite font-normal text-xl">Art by Saretta</span>
           </Link>
 
           {/* Desktop Navigation */}

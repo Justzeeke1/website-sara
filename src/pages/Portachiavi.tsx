@@ -2,12 +2,29 @@ import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Star } from "lucide-react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import config from '../configs/config.json';
-import { fetchKeychains } from '../api/firebase.js';
+import { ShoppingCart, Sparkles, Star } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+
+
+import config from "../configs/config.json";
+import { fetchKeychains } from "../api/firebase.js";
 import { useTranslation } from "react-i18next";
+
 const fallbackImage = "/placeholder.jpg";
 
 const imageMap = import.meta.glob("/src/assets/*", {
@@ -22,11 +39,31 @@ const getImageSrc = (fileName: string): string => {
   return (entry?.[1] as string) || fallbackImage;
 };
 
+// ✅ Normalizza il campo image per restituire sempre un array
+const normalizeImages = (
+  imageOrImages: string | string[] | undefined
+): string[] => {
+  if (!imageOrImages) return [];
+  if (Array.isArray(imageOrImages)) return imageOrImages;
+  return [imageOrImages];
+};
+
 const Portachiavi = () => {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language || "en").split("-")[0];
 
   const [keychains, setKeychains] = useState([]);
+  const [openDialogId, setOpenDialogId] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function checkMobile() {
+      setIsMobile(window.innerWidth <= 640);
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const getAllKeychains = async () => {
@@ -37,24 +74,24 @@ const Portachiavi = () => {
     getAllKeychains();
   }, []);
 
-  const handleClick = (title: string, preorder: boolean) => {
-    let message: string;
-    if(preorder){
-      message = `${t("keychains.order.preorderMessage")} ${title}.`
-    } else {
-      message = `${t("keychains.order.orderMessage")} ${title}.`
-    }
+  const handleClick = (title: string, preorder: boolean, idToClose?: string) => {
+    const message = preorder
+      ? `${t("keychains.order.preorderMessage")} ${title}.`
+      : `${t("keychains.order.orderMessage")} ${title}.`;
+
     const encodedMessage = encodeURIComponent(message);
     const link = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
-    window.open(link, '_blank');
+    window.open(link, "_blank");
+    // Chiudi il dialog
+    if (idToClose) setOpenDialogId(null);
   };
 
   return (
     <div className="min-h-screen pt-16">
-      {/* Header Section */}
+      {/* Header */}
       <section className="section-artistic py-20">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
+          <h1 className="font-playwrite font-normal text-4xl sm:text-5xl font-bold text-foreground mb-6">
             {t("keychains.title")}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -63,121 +100,188 @@ const Portachiavi = () => {
         </div>
       </section>
 
-      {/* Products Section */}
+      {/* Product Cards */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {keychains.map((keychain, index) => (
-              <Card 
-                key={keychain.id} 
-                className={`portfolio-card animate-fade-in-up animate-stagger-${(index % 3) + 1}`}
-              >
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button type="button" className="relative overflow-hidden group w-full">
-                      <img
-                        src={getImageSrc(keychain.image)}
-                        alt={keychain.title[lang] || keychain.title["en"]}
-                        className="w-full h-70 object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      {!keychain.available && !keychain.preorder && (
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                          <Badge variant="destructive" className="text-white">
-                            {t("keychains.unavailable")}
+            {keychains.map((keychain, index) => {
+              const title = keychain.title?.[lang] || keychain.title?.["en"];
+              const description =
+                keychain.description?.[lang] || keychain.description?.["en"];
+              const detailDescription =
+                keychain.detailDescription?.[lang] || keychain.detailDescription?.["en"];
+
+              const mainImage = Array.isArray(keychain.image)
+                ? keychain.image[0]
+                : keychain.image;
+
+              const images = keychain.images?.length
+                ? keychain.images
+                : normalizeImages(keychain.image);
+
+              return (
+                <Card
+                  key={keychain.id}
+                  className={`portfolio-card animate-fade-in-up animate-stagger-${
+                    (index % 3) + 1
+                  }`}
+                >
+                  <Dialog
+                    open={openDialogId === keychain.id}
+                    onOpenChange={(isOpen) =>
+                      setOpenDialogId(isOpen ? keychain.id : null)
+                    }
+                  >
+                    <DialogTrigger asChild>
+                      <button
+                        type="button"
+                        className="relative overflow-hidden group w-full"
+                      >
+                        <img
+                          src={getImageSrc(mainImage)}
+                          alt={title}
+                          className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          style={isMobile ? { maxHeight: '300px', height: 'auto' } : {}}
+                        />
+                        {!keychain.available && !keychain.preorder && (
+                          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                            <Badge variant="destructive" className="text-white">
+                              {t("keychains.unavailable")}
+                            </Badge>
+                          </div>
+                        )}
+                        <div className="absolute top-4 right-4">
+                          <Badge className="bg-white/90 text-foreground shadow-soft hover:bg-white/90 cursor-default">
+                            {new Intl.NumberFormat("it-IT", {
+                              style: "currency",
+                              currency: "EUR",
+                            }).format(keychain.price)}
                           </Badge>
                         </div>
-                      )}
-                      <div className="absolute top-4 right-4">
-                        <Badge className="bg-white/90 text-foreground shadow-soft hover:bg-white/90 cursor-default">
-                          {new Intl.NumberFormat('it-IT', {
-                            style: 'currency',
-                            currency: 'EUR',
-                          }).format(keychain.price)}
-                        </Badge>
-                      </div>
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <DialogHeader>
-                      <DialogTitle>{keychain.title[lang] || keychain.title["en"]}</DialogTitle>
-                      <DialogDescription>{keychain.description[lang] || keychain.description["en"]}</DialogDescription>
-                    </DialogHeader>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="relative">
-                        <Carousel className="w-full">
-                          <CarouselContent>
-                            {(keychain.images?.length ? keychain.images : [keychain.image]).map((img) => (
-                              <CarouselItem key={img}>
-                                <img
-                                  src={getImageSrc(img)}
-                                  alt={keychain.title[lang] || keychain.title["en"]}
-                                  className="w-full h-auto object-contain rounded-lg"
-                                  loading="lazy"
-                                />
-                              </CarouselItem>
-                            ))}
-                          </CarouselContent>
-                          <CarouselPrevious className="left-2" />
-                          <CarouselNext className="right-2" />
-                        </Carousel>
-                      </div>
-                      <div>
-                        <div className="mb-4">
-                          <div className="text-sm text-muted-foreground">{t("keychains.priceLabel", { defaultValue: "Prezzo" })}</div>
-                          <div className="text-2xl font-bold">
-                            {new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(keychain.price)}
-                          </div>
+                      </button>
+                    </DialogTrigger>
+                    <DialogTitle>
+                      <VisuallyHidden>{title}</VisuallyHidden>
+                    </DialogTitle>
+                    <DialogContent className="w-full max-w-[100vw] sm:max-w-[500px] md:max-w-2xl lg:max-w-4xl max-h-[90vh] overflow-y-auto">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="relative">
+                          <Carousel className="w-full">
+                            <CarouselContent>
+                              {images.map((img) => (
+                                <CarouselItem key={img}>
+                                  <img
+                                    src={getImageSrc(img)}
+                                    alt={title}
+                                    className="w-full object-contain rounded-lg"
+                                    style={isMobile ? { maxHeight: '300px', height: 'auto' } : {}}
+                                    loading="lazy"
+                                  />
+                                </CarouselItem>
+                              ))}
+                            </CarouselContent>
+                          {Array.isArray(images) && images.length > 1 && (
+                            <>
+                              <CarouselPrevious className="left-2" />
+                              <CarouselNext className="right-2" />
+                            </>
+                          )}
+                          </Carousel>
                         </div>
-                        <p className="text-muted-foreground mb-6">
-                          {keychain.description[lang] || keychain.description["en"]}
-                        </p>
-                        <Button
-                          className={`w-full ${keychain.available || keychain.preorder ? "btn-hero" : "bg-gray-400 cursor-not-allowed"}`}
-                          disabled={!keychain.available && !keychain.preorder}
-                          onClick={() => handleClick(keychain.title[lang] || keychain.title["en"], keychain.preorder)}
-                        >
-                          <ShoppingCart className="h-4 w-4 mr-2" />
-                          {keychain.available ? t("keychains.buy") : keychain.preorder ? t("keychains.preorder") : t("keychains.unavailable")}
-                        </Button>
+                        <div>
+                          <p className="font-playwrite font-normal mb-6" style={{fontSize: "2rem"}}>
+                            {title}
+                          </p>
+                          <p className="text-muted-foreground mb-6">
+                            {description}
+                          </p>
+                          <div className="mb-4">
+                            <p className="mb-6" style={{fontSize: "1.1rem"}}>
+                              {detailDescription}
+                            </p>
+                            {Object.entries(t("keychains.details", { returnObjects: true })).map(
+                              ([key, value]) => (
+                                <div key={key} className="flex items-center mb-2">
+                                  <Sparkles className="h-6 w-6 text-accent mr-3 flex-shrink-0" />
+
+                                  <span>{value}</span>
+                                </div>
+                              )
+                            )}
+                            <div className="text-sm text-muted-foreground">
+                              {t("keychains.priceLabel", {
+                                defaultValue: "Prezzo",
+                              })}
+                            </div>
+                            <div className="text-2xl font-bold">
+                              {new Intl.NumberFormat("it-IT", {
+                                style: "currency",
+                                currency: "EUR",
+                              }).format(keychain.price)}
+                            </div>
+                          </div>
+                          <Button
+                            className={`w-full ${
+                              keychain.available || keychain.preorder
+                                ? "btn-hero"
+                                : "bg-gray-400 cursor-not-allowed"
+                            }`}
+                            disabled={
+                              !keychain.available && !keychain.preorder
+                            }
+                            onClick={() =>
+                              handleClick(title, keychain.preorder, keychain.id)
+                            }
+                          >
+                            <ShoppingCart className="h-4 w-4 mr-2" />
+                            {keychain.available
+                              ? t("keychains.buy")
+                              : keychain.preorder
+                              ? t("keychains.preorder")
+                              : t("keychains.unavailable")}
+                          </Button>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <h3 className="font-playwrite font-normal text-xl text-foreground mb-2">
+                          {title}
+                        </h3>
                       </div>
                     </div>
-                  </DialogContent>
-                </Dialog>
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">
-                        {keychain.title[lang] || keychain.title["en"]}
-                      </h3>
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground mb-4">
-                    {keychain.description[lang] || keychain.description["en"]}
-                  </p>
-                  <Button 
-                    className={`w-full ${
-                      keychain.available || keychain.preorder
-                        ? "btn-hero" 
-                        : "bg-gray-400 cursor-not-allowed"
-                    }`}
-                    disabled={!keychain.available && !keychain.preorder}
-                    onClick={() => handleClick(keychain.title[lang] || keychain.title["en"], keychain.preorder)}
-                  >
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    {keychain.available ? t("keychains.buy") : keychain.preorder ? t("keychains.preorder") : t("keychains.unavailable")}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                    <p className="text-muted-foreground mb-4">{description}</p>
+                    <Button
+                      className={`w-full ${
+                        keychain.available || keychain.preorder
+                          ? "btn-hero"
+                          : "bg-gray-400 cursor-not-allowed"
+                      }`}
+                      disabled={!keychain.available && !keychain.preorder}
+                      onClick={() => handleClick(title, keychain.preorder, keychain.id)}
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      {keychain.available
+                        ? t("keychains.buy")
+                        : keychain.preorder
+                        ? t("keychains.preorder")
+                        : t("keychains.unavailable")}
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features */}
       <section className="section-artistic py-16">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-6">
+            <h2 className="font-playwrite font-normal text-3xl text-foreground mb-6">
               {t("keychains.features.title")}
             </h2>
           </div>
@@ -186,7 +290,9 @@ const Portachiavi = () => {
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">{t("keychains.features.unique.title")}</h3>
+              <h3 className="font-playwrite font-normal text-xl mb-3">
+                {t("keychains.features.unique.title")}
+              </h3>
               <p className="text-muted-foreground">
                 {t("keychains.features.unique.description")}
               </p>
@@ -195,7 +301,9 @@ const Portachiavi = () => {
               <div className="w-16 h-16 bg-gradient-accent rounded-full flex items-center justify-center mx-auto mb-4">
                 <ShoppingCart className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">{t("keychains.features.durable.title")}</h3>
+              <h3 className="font-playwrite font-normal text-xl mb-3">
+                {t("keychains.features.durable.title")}
+              </h3>
               <p className="text-muted-foreground">
                 {t("keychains.features.durable.description")}
               </p>
@@ -204,7 +312,9 @@ const Portachiavi = () => {
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">{t("keychains.features.shipping.title")}</h3>
+              <h3 className="font-playwrite font-normal text-xl mb-3">
+                {t("keychains.features.shipping.title")}
+              </h3>
               <p className="text-muted-foreground">
                 {t("keychains.features.shipping.description")}
               </p>
@@ -213,20 +323,17 @@ const Portachiavi = () => {
         </div>
       </section>
 
-      {/* Custom Order CTA */}
+      {/* CTA */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl p-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
+            <h2 className="font-playwrite font-normal text-3xl text-foreground mb-4">
               {t("keychains.cta.title")}
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
               {t("keychains.cta.description")}
             </p>
-            <a 
-              href="/commissioni"
-              className="btn-hero inline-flex items-center"
-            >
+            <a href="/commissioni" className="btn-hero inline-flex items-center">
               {t("keychains.cta.button")}
             </a>
           </div>

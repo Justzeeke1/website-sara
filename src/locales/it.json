@@ -25,7 +25,7 @@
     "format": {
       "label": "Formato",
       "options": { "A4": "A4", "A5": "A5", "A6": "A6" },
-      "append": "Formato: {{format}}"
+      "append": "formato {{format}}"
     },
     "priceLabel": "Prezzo",
     "cta": {
@@ -35,13 +35,18 @@
     }
   },
   "keychains": {
-    "title": "Portachiavi Artistici",
+    "title": "Portachiavi",
     "subtitle": "Porta sempre con te un pezzo della mia arte! Portachiavi in acrilico con le mie illustrazioni originali, perfetti come regalo o per personalizzare le tue chiavi.",
     "price": "€",
     "priceLabel": "Prezzo",
     "buy":"Lo voglio!",
     "preorder":"Preordina",
     "unavailable": "Non Disponibile",
+    "details": {
+      "row1": "Acrilico trasparente con stampa fronte e retro",
+      "row2": "~5 cm di altezza",
+      "row3": "Anello in metallo incluso"
+    },
     "features": {
       "title": "Perché scegliere i miei portachiavi?",
       "unique": {
@@ -124,7 +129,15 @@
         "label": "Scadenza desiderata",
         "placeholder": ""
       },
-      "submit": "Invia Richiesta"
+      "submit": "Invia Richiesta",
+      "emailBody": "Ciao {{name}},\n\nti ringrazio per avermi contattato e per aver scelto il mio servizio di {{service}}.\n\nHo ricevuto la tua richiesta con queste informazioni:\n\n- Nome: {{name}}\n- Email: {{email}}\n- Telefono: {{phone}}\n- Servizio richiesto: {{service}}\n- Descrizione/Note: {{description}}\n- Budget indicato: {{budget}} €\n- Deadline: {{deadline}}\n\nLa descrizione che mi hai fornito è importante per capire esattamente cosa desideri, e farò il possibile per rispettare la scadenza indicata.\n\nSe avrò bisogno di ulteriori dettagli ti contatterò direttamente. Nel frattempo, se vuoi aggiungere o modificare qualcosa, sentiti libero di rispondere a questa email.\n\nA presto,\nSara De Masi",
+      "toast": {
+        "successTitle": "Richiesta inviata!",
+        "successDescription": "Ti risponderò entro 24 ore con un preventivo dettagliato.",
+        "failureTitle": "Errore nell'invio",
+        "failureDescription": "Qualcosa è andato storto. Riprova più tardi.",
+        "variant": "destructive"
+      }
     },
     "contacts":{
       "title": "Altri modi per contattarmi",
