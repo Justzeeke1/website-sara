@@ -13,6 +13,7 @@ import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { MdAlternateEmail } from "react-icons/md";
 import { fetchServices } from "../api/firebase.js";
 import emailjs from "@emailjs/browser";
+import heroImage from "@/assets/WallpaperPatternHomepage.png";
 
 const Commissioni = () => {
   const { t, i18n } = useTranslation();
@@ -101,7 +102,13 @@ const Commissioni = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Header Section */}
-      <section className="section-artistic py-20">
+      <section className="section-artistic py-20"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(var(--background) / 0.9), hsl(var(--background) / 0.7)), url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-playwrite font-normal text-4xl sm:text-5xl font-bold text-foreground mb-6">
             {t("commissions.title")}

@@ -26,7 +26,7 @@ const NotFound = () => {
     >
       <div className="text-center">
         <h1 className="font-playwrite font-normal text-4xl mb-4 text-foreground">{t('notFound.title')}</h1>
-        <p className="font-playwrite font-normal text-xl text-muted-foreground mb-4">{t('notFound.message')}</p>
+        <p className="font-playwrite font-normal text-muted-foreground mb-4" style={{fontSize:"2rem"}}>{t('notFound.message')}</p>
         <a href="/" className="text-primary hover:text-primary-glow underline">
           {t('notFound.backHome')}
         </a>

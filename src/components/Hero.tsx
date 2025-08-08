@@ -41,7 +41,10 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-stagger-3">
             <Link to="/illustrazioni">
-              <Button className="btn-hero group">
+              <Button
+                size="lg"
+                className="btn-hero group"
+              >
                 {t('hero.discover')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -50,7 +53,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                className="border-2 border-primary hover:bg-primary-glow hover:text-primary-foreground transition-all duration-300"
               >
                 {t('hero.commission')}
               </Button>

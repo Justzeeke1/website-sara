@@ -2,12 +2,25 @@ import { Heart, Palette, Coffee } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useTranslation } from 'react-i18next';
 import logo from '../assets/logo.png'
+import heroImage from "@/assets/WallpaperPatternHomepage.png";
 
 const AboutMe = () => {
   const { t } = useTranslation();
   
   return (
-    <section className="section-artistic py-20">
+    <section
+  className="section-artistic py-20 mt-8 overflow-hidden"
+  style={{ minHeight: 'calc(100vh - 2rem)' }} // <-- qui la modifica
+>
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(var(--background) / 0.9), hsl(var(--background) / 0.7)), url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-playwrite font-normal text-4xl sm:text-5xl font-bold text-foreground mb-4">
@@ -27,7 +40,7 @@ const AboutMe = () => {
                   <AvatarImage 
                     src={logo} 
                     alt={t('about.avatarAlt')}
-                    className="object-cover"
+                    className="object-cover bg-white"
                   />
                   <AvatarFallback className="text-2xl font-bold bg-gradient-primary text-primary-foreground">
                     Logo

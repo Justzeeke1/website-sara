@@ -19,6 +19,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import heroImage from "@/assets/WallpaperPatternHomepage.png";
 
 
 import config from "../configs/config.json";
@@ -89,7 +90,13 @@ const Portachiavi = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Header */}
-      <section className="section-artistic py-20">
+      <section className="section-artistic py-20"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(var(--background) / 0.9), hsl(var(--background) / 0.7)), url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-playwrite font-normal text-4xl sm:text-5xl font-bold text-foreground mb-6">
             {t("keychains.title")}

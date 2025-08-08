@@ -131,6 +131,7 @@
   /* Hero button variant */
   .btn-hero {
     @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground px-8 py-4 rounded-2xl font-medium shadow-artistic hover:shadow-glow transform hover:scale-105 transition-all duration-300;
+    background-image: linear-gradient(135deg, hsla(320, 31%, 33%, 0.95), hsl(320 50% 65% / 1));
   }
 
   /* Portfolio card styles */
