@@ -131,6 +131,7 @@
       },
       "submit": "Send Request",
       "emailBody": "Hi {{name}},\n\nThank you for contacting me and for choosing my {{service}} service.\n\nHere are the details I received:\n\n- Name: {{name}}\n- Email: {{email}}\n- Phone: {{phone}}\n- Service: {{service}}\n- Description/Notes: {{description}}\n- Budget: €{{budget}}\n- Deadline: {{deadline}}\n\nThe description you provided helps me understand exactly what you need, and I’ll do my best to meet the deadline.\n\nIf I need any more details, I’ll contact you directly. In the meantime, feel free to reply to this email if you have any updates.\n\nBest regards,\nSara De Masi",
+      "emailSubject":"I received your request! I will reply soon",
       "toast": {
         "successTitle": "Request sent!",
         "successDescription": "I will get back to you within 24 hours with a detailed quote.",

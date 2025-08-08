@@ -1,5 +1,9 @@
 {
     "phoneNumber":"3929140380",
     "email": "sarademasiart@gmail.com",
-    "instagram":"@artby_saretta"
+    "instagram":"artby_saretta",
+    "serviceId": "sarademasiart_email_serv",
+    "templateIdUser": "template_8nx59dj",
+    "templateIdAdmin": "template_vggnihj",
+    "publicKey": "-nKaLV8TLYTUo_A83"
 }

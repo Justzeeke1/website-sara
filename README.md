@@ -71,3 +71,20 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+```sh
+# PER RILASCIARE IN PRODUZIONE EFFETTUARE I SEGUENTI COMANDI
+
+npm run build
+
+firebase deploy --only hosting
+
+# Se il comando non va a buon fine fare prima
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+firebase login
+
+# Riprovare
+
+```

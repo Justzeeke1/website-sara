@@ -42,11 +42,24 @@ const Commissioni = () => {
 
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-  const { t } = useTranslation();
 
-  const message = t("emailBody", {
+  // 🔹 Email da inviare a te (Admin)
+  const templateParamsAdmin = {
+    from_name: formData.name,
+    from_email: formData.email,
+    phone: formData.phone,
+    service: formData.service,
+    description: formData.description,
+    budget: formData.budget,
+    deadline: formData.deadline,
+    to_email: config.email // la tua email personale
+  };
+
+  // 🔹 Email di conferma da inviare all'utente
+  
+  const messageUser = t("commissions.form.emailBody", {
     name: formData.name,
     email: formData.email,
     phone: formData.phone,
@@ -55,43 +68,50 @@ const Commissioni = () => {
     budget: formData.budget,
     deadline: formData.deadline
   });
-
-  const serviceId = 'YOUR_SERVICE_ID';
-  const templateId = 'YOUR_TEMPLATE_ID';
-  const publicKey = 'YOUR_PUBLIC_KEY';
-
-  const templateParams = {
-    to_email: config.email,
-    from_name: formData.name,
-    from_email: formData.email,
-    message: message
+  
+  const templateParamsUser = {
+    from_name: "Sara De Masi Art",
+    to_email: formData.email,
+    service: formData.service,
+    message: messageUser,
+    subject: t("commissions.form.emailSubject")
   };
 
-  emailjs.send(serviceId, templateId, templateParams, publicKey)
-    .then(() => {
-      toast({
-        title: "Richiesta inviata!",
-        description: "Ti risponderò entro 24 ore con un preventivo dettagliato.",
-      });
+  // 🔧 Sostituisci con i tuoi veri ID EmailJS
+  const serviceId = config.serviceId;
+  const templateIdAdmin = config.templateIdAdmin;
+  const templateIdUser = config.templateIdUser;
+  const publicKey = config.publicKey;
 
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        service: "",
-        description: "",
-        budget: "",
-        deadline: ""
-      });
-    })
-    .catch((error) => {
-      toast({
-        title: "Errore nell'invio",
-        description: "Qualcosa è andato storto. Riprova più tardi.",
-        variant: "destructive"
-      });
-      console.error('Email invio fallito:', error);
+  try {
+    await Promise.all([
+      emailjs.send(serviceId, templateIdAdmin, templateParamsAdmin, publicKey),
+      emailjs.send(serviceId, templateIdUser, templateParamsUser, publicKey)
+    ]);
+
+    toast({
+      title: t("commissions.form.toast.successTitle"),
+      description: t("commissions.form.toast.successDescription"),
     });
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      service: "",
+      description: "",
+      budget: "",
+      deadline: ""
+    });
+
+  } catch (error) {
+    toast({
+      title: t("commissions.form.toast.failureTitle"),
+      description: t("commissions.form.toast.failureDescription"),
+      variant: "destructive"
+    });
+    console.error("Errore invio email:", error);
+  }
 };
 
 
@@ -319,19 +339,36 @@ const Commissioni = () => {
               <h3 className="font-playwrite font-normal text-lg mb-2">{t("commissions.contacts.email")}</h3>
               <p className="text-muted-foreground">{config.email}</p>
             </div>
+            {/* WhatsApp */}
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-gradient-accent rounded-full flex items-center justify-center mb-4">
+              <a
+                href={`https://wa.me/${config.phoneNumber.replace(/\s+/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-16 h-16 bg-gradient-accent rounded-full flex items-center justify-center mb-4"
+              >
                 <FaWhatsapp className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-playwrite font-normal text-lg mb-2">{t("commissions.contacts.whatsapp")}</h3>
+              </a>
+              <h3 className="font-playwrite font-normal text-lg mb-2">
+                {t("commissions.contacts.whatsapp")}
+              </h3>
               <p className="text-muted-foreground">+39 {config.phoneNumber}</p>
             </div>
+
+            {/* Instagram */}
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4">
+              <a
+                href={`https://instagram.com/${config.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4"
+              >
                 <FaInstagram className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-playwrite font-normal text-lg mb-2">{t("commissions.contacts.instagram")}</h3>
-              <p className="text-muted-foreground">{config.instagram}</p>
+              </a>
+              <h3 className="font-playwrite font-normal text-lg mb-2">
+                {t("commissions.contacts.instagram")}
+              </h3>
+              <p className="text-muted-foreground">@{config.instagram}</p>
             </div>
           </div>
         </div>

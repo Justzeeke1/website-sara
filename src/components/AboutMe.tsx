@@ -31,7 +31,7 @@ const AboutMe = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center animate-fade-in-up">
           {/* Avatar and Info */}
           <div className="text-center lg:text-left">
             <div className="flex justify-center lg:justify-start mb-8">

@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 
 const Index = () => {
   return (
-    <div className="">
+    <div>
       <Hero />
     </div>
   );

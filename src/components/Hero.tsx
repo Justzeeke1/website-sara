@@ -8,7 +8,7 @@ const Hero = () => {
   const { t } = useTranslation();
   
   return (
-    <section className="flex items-center justify-center py-20" style={{ minHeight: 'calc(100vh - 4rem)' }}>
+    <section className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 4rem)' }}>
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
