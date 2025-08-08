@@ -26,7 +26,7 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ['navigator', 'localStorage', 'cookie'],
+      order: ['localStorage', 'cookie', 'navigator'],
       lookupLocalStorage: 'i18nextLng',
       lookupCookie: 'i18nextLng',
       caches: ['localStorage', 'cookie'],
