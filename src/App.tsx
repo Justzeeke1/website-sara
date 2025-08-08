@@ -22,7 +22,7 @@ const App = () => (
         <ScrollToTop />
         <Navigation/>
         <main className="fixed inset-x-0 top-16 bottom-0" role="main">
-          <div className="h-full overflow-y-auto">
+          <div id="app-scroll-container" className="h-full overflow-y-auto">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/illustrazioni" element={<Illustrazioni />} />
