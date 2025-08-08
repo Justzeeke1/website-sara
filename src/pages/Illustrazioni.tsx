@@ -97,7 +97,7 @@ const Illustrazioni = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Header Section */}
       <section className="section-artistic py-20"
       style={{

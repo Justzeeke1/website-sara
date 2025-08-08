@@ -9,9 +9,9 @@ const AboutMe = () => {
   
   return (
     <section
-  className="section-artistic py-20 mt-8 overflow-hidden"
-  style={{ minHeight: 'calc(100vh - 2rem)' }} // <-- qui la modifica
->
+      className="section-artistic py-20 overflow-hidden"
+      style={{ minHeight: 'calc(100vh - 4rem)' }} // <-- qui la modifica
+    >
       <div 
         className="absolute inset-0 z-0"
         style={{

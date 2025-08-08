@@ -21,16 +21,17 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <Navigation/>
-        <main className="pt-16 h-[calc(100vh-4rem)] overflow-y-auto" role="main">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/illustrazioni" element={<Illustrazioni />} />
-            <Route path="/portachiavi" element={<Portachiavi />} />
-            <Route path="/commissioni" element={<Commissioni />} />
-            <Route path="/aboutme" element={<AboutMe />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+        <main className="pt-16 h-[calc(100vh)]">
+          <div className="h-full overflow-y-auto">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/illustrazioni" element={<Illustrazioni />} />
+              <Route path="/portachiavi" element={<Portachiavi />} />
+              <Route path="/commissioni" element={<Commissioni />} />
+              <Route path="/aboutme" element={<AboutMe />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </main>
       </BrowserRouter>
   </QueryClientProvider>

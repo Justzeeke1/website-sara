@@ -8,7 +8,7 @@ const Hero = () => {
   const { t } = useTranslation();
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="flex items-center justify-center py-20" style={{ minHeight: 'calc(100vh - 4rem)' }}>
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
@@ -53,7 +53,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-2 border-primary hover:bg-primary-glow hover:text-primary-foreground transition-all duration-300"
+                className="border-2 border-primary hover:bgprimary-glow hover:text-primary-foreground transition-all duration-300"
               >
                 {t('hero.commission')}
               </Button>

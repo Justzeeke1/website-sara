@@ -88,7 +88,7 @@ const Portachiavi = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Header */}
       <section className="section-artistic py-20"
         style={{
