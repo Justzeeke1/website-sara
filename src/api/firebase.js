@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, getDocs, collection, where, addDoc, onSnapshot, doc, setDoc } from "firebase/firestore";
+import { getFirestore, query, getDocs, collection, where, addDoc, onSnapshot, doc, setDoc, orderBy } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,22 +17,23 @@ const dbFirestore = getFirestore(app);
 
 export const fetchIllustrations = async () => {
   try {
-    const userCollectionRef = collection(dbFirestore, "illustrazioni");
-    const querySnapshot = await getDocs(userCollectionRef);
+    const q = query(
+      collection(dbFirestore, "illustrazioni"),
+      orderBy("order", "asc") // oppure "desc" se vuoi invertire
+    );
 
-    const illustrations = querySnapshot.docs
-      .map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }))
-      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+    const querySnapshot = await getDocs(q);
 
-    return illustrations;
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
   } catch (error) {
     console.error("Errore durante il recupero dei dati:", error);
     return [];
   }
 };
+
 
 export const fetchKeychains = async () => {
   try {
