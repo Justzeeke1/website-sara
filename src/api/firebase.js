@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, getDocs, collection, where, addDoc, onSnapshot, doc, setDoc, orderBy } from "firebase/firestore";
+import { getFirestore, query, getDocs, collection, where, addDoc, onSnapshot, doc, setDoc, orderBy, deleteDoc, updateDoc } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,6 +15,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const dbFirestore = getFirestore(app);
+const auth = getAuth(app);
 
 export const fetchIllustrations = async () => {
   try {
@@ -170,4 +172,58 @@ export const fetchServices = async () => {
 //     console.error("Errore durante la migrazione della collezione 'servizi':", error);
 //   }
 // };
+
+// Admin Authentication Functions
+export const loginAdmin = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return { success: true, user: userCredential.user };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
+export const logoutAdmin = async () => {
+  try {
+    await signOut(auth);
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
+export const onAuthChange = (callback) => {
+  return onAuthStateChanged(auth, callback);
+};
+
+// CRUD Functions for Admin
+export const addDocument = async (collectionName, data) => {
+  try {
+    const docRef = await addDoc(collection(dbFirestore, collectionName), data);
+    return { success: true, id: docRef.id };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
+export const updateDocument = async (collectionName, docId, data) => {
+  try {
+    const docRef = doc(dbFirestore, collectionName, docId);
+    await updateDoc(docRef, data);
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
+export const deleteDocument = async (collectionName, docId) => {
+  try {
+    await deleteDoc(doc(dbFirestore, collectionName, docId));
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
+export { auth, dbFirestore };
 

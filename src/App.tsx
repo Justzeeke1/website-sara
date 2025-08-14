@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Illustrazioni from "./pages/Illustrazioni";
 import Portachiavi from "./pages/Portachiavi";
 import Commissioni from "./pages/Commissioni";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
 import AboutMe from "./components/AboutMe";
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/portachiavi" element={<Portachiavi />} />
               <Route path="/commissioni" element={<Commissioni />} />
               <Route path="/aboutme" element={<AboutMe />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
