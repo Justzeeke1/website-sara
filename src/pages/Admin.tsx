@@ -164,12 +164,13 @@ const Admin = () => {
             collectionName="portachiavi" 
             title="Gestione Portachiavi"
             fields={[
-              { key: 'title.it', label: 'Titolo (IT)', type: 'text' },
-              { key: 'title.en', label: 'Titolo (EN)', type: 'text' },
-              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea' },
-              { key: 'description.en', label: 'Descrizione (EN)', type: 'textarea' },
-              { key: 'imageUrl', label: 'URL Immagine', type: 'text' },
+              { key: 'id', label: 'ID', type: 'number', showInTable: true },
+              { key: 'title.it', label: 'Titolo (IT)', type: 'text', showInTable: true },
+              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea', showInTable: true },
+              { key: 'available', label: 'Disponibile', type: 'boolean', showInTable: true },
+              { key: 'preorder', label: 'Preordine', type: 'boolean', showInTable: true },
               { key: 'price', label: 'Prezzo', type: 'number' },
+              { key: 'image', label: 'Immagine', type: 'text' },
             ]}
           />
         </TabsContent>
@@ -179,14 +180,15 @@ const Admin = () => {
             collectionName="servizi" 
             title="Gestione Servizi"
             fields={[
-              { key: 'title.it', label: 'Titolo (IT)', type: 'text' },
+              { key: 'id', label: 'ID', type: 'number', showInTable: true },
+              { key: 'title.it', label: 'Titolo (IT)', type: 'text', showInTable: true },
+              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea', showInTable: true },
+              { key: 'duration.it', label: 'Durata (IT)', type: 'text', showInTable: true },
+              { key: 'price.it', label: 'Prezzo (IT)', type: 'text', showInTable: true },
               { key: 'title.en', label: 'Titolo (EN)', type: 'text' },
-              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea' },
               { key: 'description.en', label: 'Descrizione (EN)', type: 'textarea' },
-              { key: 'price.it', label: 'Prezzo (IT)', type: 'text' },
+              { key: 'duration.en', label: 'Durata (EN)', type: 'text' },
               { key: 'price.en', label: 'Prezzo (EN)', type: 'text' },
-              { key: 'features.it', label: 'Features (IT)', type: 'array' },
-              { key: 'features.en', label: 'Features (EN)', type: 'array' },
             ]}
           />
         </TabsContent>

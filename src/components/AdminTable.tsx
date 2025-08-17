@@ -15,7 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 interface Field {
   key: string;
   label: string;
-  type: 'text' | 'textarea' | 'number' | 'array' | 'multi-select' | 'select';
+  type: 'text' | 'textarea' | 'number' | 'array' | 'multi-select' | 'select' | 'boolean';
   options?: string[]; // for select or multi-select
   max?: number; // max selections for multi-select
   showInTable?: boolean; // whether to show this field as a column
@@ -264,6 +264,14 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
           </select>
         );
       }
+      case 'boolean': {
+        return (
+          <Checkbox
+            checked={!!value}
+            onCheckedChange={(checked) => setFormData({ ...formData, [field.key]: checked })}
+          />
+        );
+      }
       default:
         return (
           <Input
@@ -332,6 +340,9 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
                   <TableCell key={field.key}>
                     {(() => {
                       const value = getNestedValue(item, field.key);
+                      if (field.type === 'boolean') {
+                        return value ? 'Sì' : 'No';
+                      }
                       if ((field.type === 'array' || field.type === 'multi-select') && Array.isArray(value)) {
                         return value.join(', ');
                       }
