@@ -144,14 +144,17 @@ const Admin = () => {
             collectionName="illustrazioni" 
             title="Gestione Illustrazioni"
             fields={[
-              { key: 'title.it', label: 'Titolo (IT)', type: 'text' },
+              { key: 'id', label: 'ID', type: 'number', showInTable: true },
+              { key: 'title.it', label: 'Titolo (IT)', type: 'text', showInTable: true },
+              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea', showInTable: true },
+              { key: 'order', label: 'Ordine', type: 'number', showInTable: true },
+              { key: 'format', label: 'Formato', type: 'multi-select', options: ['A4', 'A5', 'A6', 'Sticker'] },
+              { key: 'category.it', label: 'Categoria (IT)', type: 'multi-select', options: ['Illustrazione', 'Sticker'], max: 2 },
+              { key: 'category.en', label: 'Category (EN)', type: 'multi-select', options: ['Illustration', 'Sticker'], max: 2 },
+              // Opzionali, non mostrati in tabella
               { key: 'title.en', label: 'Titolo (EN)', type: 'text' },
-              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea' },
               { key: 'description.en', label: 'Descrizione (EN)', type: 'textarea' },
-              { key: 'category.it', label: 'Categoria (IT)', type: 'text' },
-              { key: 'category.en', label: 'Categoria (EN)', type: 'text' },
               { key: 'imageUrl', label: 'URL Immagine', type: 'text' },
-              { key: 'order', label: 'Ordine', type: 'number' },
             ]}
           />
         </TabsContent>

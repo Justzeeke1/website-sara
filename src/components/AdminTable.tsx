@@ -8,13 +8,17 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Edit, Trash2 } from "lucide-react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, where, updateDoc, doc } from "firebase/firestore";
 import { addDocument, updateDocument, deleteDocument } from "@/api/firebase";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Field {
   key: string;
   label: string;
-  type: 'text' | 'textarea' | 'number' | 'array';
+  type: 'text' | 'textarea' | 'number' | 'array' | 'multi-select' | 'select';
+  options?: string[]; // for select or multi-select
+  max?: number; // max selections for multi-select
+  showInTable?: boolean; // whether to show this field as a column
 }
 
 interface AdminTableProps {
@@ -45,9 +49,9 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
         : query(collection(dbFirestore, collectionName));
       
       const querySnapshot = await getDocs(q);
-      const items = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
+      const items = querySnapshot.docs.map(d => ({
+        docId: d.id,
+        ...d.data()
       }));
       setData(items);
     } catch (error) {
@@ -82,6 +86,10 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
         const value = getNestedValue(item, field.key);
         if (field.type === 'array' && Array.isArray(value)) {
           initialData[field.key] = value.join('\n');
+        } else if (field.type === 'multi-select') {
+          initialData[field.key] = Array.isArray(value) ? value : [];
+        } else if (field.type === 'number') {
+          initialData[field.key] = value ?? '';
         } else {
           initialData[field.key] = value || '';
         }
@@ -91,7 +99,11 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
       setEditingItem(null);
       const initialData: any = {};
       fields.forEach(field => {
-        initialData[field.key] = '';
+        if (field.type === 'multi-select') {
+          initialData[field.key] = [];
+        } else {
+          initialData[field.key] = '';
+        }
       });
       setFormData(initialData);
     }
@@ -101,52 +113,64 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
   const handleSave = async () => {
     try {
       const processedData: any = {};
-      
+
       fields.forEach(field => {
         let value = formData[field.key];
-        
+
         if (field.type === 'array') {
           value = value ? value.split('\n').filter((item: string) => item.trim()) : [];
         } else if (field.type === 'number') {
-          value = value ? Number(value) : 0;
-        }
-        
+          value = value !== '' && value !== null && value !== undefined ? Number(value) : 0;
+        } // multi-select stays as an array
+
         setNestedValue(processedData, field.key, value);
       });
 
+      // Special ordering logic for 'illustrazioni' when inserting a new item
+      if (!editingItem && collectionName === 'illustrazioni' && typeof processedData.order === 'number' && processedData.order > 0) {
+        const { dbFirestore } = await import('@/api/firebase');
+        const q = query(collection(dbFirestore, 'illustrazioni'), where('order', '>=', processedData.order));
+        const snap = await getDocs(q);
+        const updates = snap.docs.map(async (d) => {
+          const curr = d.data()?.order ?? 0;
+          await updateDoc(d.ref, { order: curr + 1 });
+        });
+        await Promise.all(updates);
+      }
+
       let result;
       if (editingItem) {
-        result = await updateDocument(collectionName, editingItem.id, processedData);
+        result = await updateDocument(collectionName, editingItem.docId, processedData);
       } else {
         result = await addDocument(collectionName, processedData);
       }
 
       if (result.success) {
         toast({
-          title: "Successo",
-          description: editingItem ? "Elemento aggiornato" : "Elemento creato",
+          title: 'Successo',
+          description: editingItem ? 'Elemento aggiornato' : 'Elemento creato',
         });
         setIsDialogOpen(false);
         fetchData();
       } else {
         toast({
-          title: "Errore",
+          title: 'Errore',
           description: result.error,
-          variant: "destructive",
+          variant: 'destructive',
         });
       }
     } catch (error) {
       toast({
-        title: "Errore",
-        description: "Errore durante il salvataggio",
-        variant: "destructive",
+        title: 'Errore',
+        description: 'Errore durante il salvataggio',
+        variant: 'destructive',
       });
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (docId: string) => {
     if (window.confirm("Sei sicuro di voler eliminare questo elemento?")) {
-      const result = await deleteDocument(collectionName, id);
+      const result = await deleteDocument(collectionName, docId);
       
       if (result.success) {
         toast({
@@ -165,14 +189,13 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
   };
 
   const renderField = (field: Field) => {
-    const value = formData[field.key] || '';
-    
+    const value = formData[field.key];
     switch (field.type) {
       case 'textarea':
         return (
           <Textarea
-            value={value}
-            onChange={(e) => setFormData({...formData, [field.key]: e.target.value})}
+            value={value || ''}
+            onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
             placeholder={field.label}
           />
         );
@@ -180,24 +203,72 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
         return (
           <Input
             type="number"
-            value={value}
-            onChange={(e) => setFormData({...formData, [field.key]: e.target.value})}
+            value={value ?? ''}
+            onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
             placeholder={field.label}
           />
         );
       case 'array':
         return (
           <Textarea
-            value={value}
-            onChange={(e) => setFormData({...formData, [field.key]: e.target.value})}
+            value={value || ''}
+            onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
             placeholder="Inserisci un elemento per riga"
           />
         );
+      case 'multi-select': {
+        const selected: string[] = Array.isArray(value) ? value : [];
+        return (
+          <div className="flex flex-wrap gap-3">
+            {field.options?.map((opt) => {
+              const checked = selected.includes(opt);
+              return (
+                <label key={opt} className="flex items-center gap-2">
+                  <Checkbox
+                    checked={checked}
+                    onCheckedChange={(isChecked) => {
+                      const next = (() => {
+                        if (isChecked) {
+                          if (!checked) {
+                            const candidate = [...selected, opt];
+                            if (field.max && candidate.length > field.max) return selected; // prevent exceeding max
+                            return candidate;
+                          }
+                          return selected;
+                        } else {
+                          return selected.filter((v) => v !== opt);
+                        }
+                      })();
+                      setFormData({ ...formData, [field.key]: next });
+                    }}
+                  />
+                  <span>{opt}</span>
+                </label>
+              );
+            })}
+          </div>
+        );
+      }
+      case 'select': {
+        // Simple native select to keep dependencies minimal
+        return (
+          <select
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            value={value || ''}
+            onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+          >
+            <option value="">Seleziona...</option>
+            {field.options?.map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+        );
+      }
       default:
         return (
           <Input
-            value={value}
-            onChange={(e) => setFormData({...formData, [field.key]: e.target.value})}
+            value={value || ''}
+            onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
             placeholder={field.label}
           />
         );
@@ -248,8 +319,7 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>ID</TableHead>
-              {fields.slice(0, 3).map((field) => (
+              {fields.filter((f) => f.showInTable).map((field) => (
                 <TableHead key={field.key}>{field.label}</TableHead>
               ))}
               <TableHead>Azioni</TableHead>
@@ -257,16 +327,15 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
           </TableHeader>
           <TableBody>
             {data.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell className="font-mono text-xs">{item.id}</TableCell>
-                {fields.slice(0, 3).map((field) => (
+              <TableRow key={item.docId}>
+                {fields.filter((f) => f.showInTable).map((field) => (
                   <TableCell key={field.key}>
                     {(() => {
                       const value = getNestedValue(item, field.key);
-                      if (field.type === 'array' && Array.isArray(value)) {
+                      if ((field.type === 'array' || field.type === 'multi-select') && Array.isArray(value)) {
                         return value.join(', ');
                       }
-                      return String(value || '').substring(0, 50) + (String(value || '').length > 50 ? '...' : '');
+                      return String(value ?? '').substring(0, 80) + (String(value ?? '').length > 80 ? '...' : '');
                     })()}
                   </TableCell>
                 ))}
@@ -282,7 +351,7 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(item.docId)}
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
