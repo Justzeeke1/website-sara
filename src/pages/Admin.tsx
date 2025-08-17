@@ -154,7 +154,7 @@ const Admin = () => {
               // Opzionali, non mostrati in tabella
               { key: 'title.en', label: 'Titolo (EN)', type: 'text' },
               { key: 'description.en', label: 'Descrizione (EN)', type: 'textarea' },
-              { key: 'imageUrl', label: 'URL Immagine', type: 'text' },
+              { key: 'image', label: 'URL Immagine', type: 'text' },
             ]}
           />
         </TabsContent>
