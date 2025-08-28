@@ -28,6 +28,7 @@
       "append": "format {{format}}"
     },
     "priceLabel": "Price",
+    "buy":"I Want It!",
     "cta": {
       "title": "Do you like my style?",
       "description": "I can create a custom illustration for you. Contact me to discuss your project!",

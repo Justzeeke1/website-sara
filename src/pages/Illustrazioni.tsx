@@ -258,7 +258,7 @@ const Illustrazioni = () => {
                             }
                           >
                             <ShoppingCart className="h-4 w-4 mr-2" />
-                            {t("illustrations.cta.button")}
+                            {t("illustrations.buy")}
                           </Button>
                         </div>
                       </div>
