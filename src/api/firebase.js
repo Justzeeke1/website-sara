@@ -75,6 +75,63 @@ export const fetchServices = async () => {
   }
 };
 
+export const fetchCharms = async () => {
+  try {
+    const userCollectionRef = collection(dbFirestore, "charm");
+    const querySnapshot = await getDocs(userCollectionRef);
+
+    const keychains = querySnapshot.docs
+      .map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+
+    return keychains;
+  } catch (error) {
+    console.error("Errore durante il recupero dei dati:", error);
+    return [];
+  }
+};
+
+export const fetchPins = async () => {
+  try {
+    const userCollectionRef = collection(dbFirestore, "spille");
+    const querySnapshot = await getDocs(userCollectionRef);
+
+    const keychains = querySnapshot.docs
+      .map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+
+    return keychains;
+  } catch (error) {
+    console.error("Errore durante il recupero dei dati:", error);
+    return [];
+  }
+};
+
+export const fetchStickers = async () => {
+  try {
+    const userCollectionRef = collection(dbFirestore, "stickers");
+    const querySnapshot = await getDocs(userCollectionRef);
+
+    const keychains = querySnapshot.docs
+      .map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+
+    return keychains;
+  } catch (error) {
+    console.error("Errore durante il recupero dei dati:", error);
+    return [];
+  }
+};
+
 // export const migrateIllustrazioni = async () => {
 //   try {
 //     const colRef = collection(dbFirestore, "illustrazioni");

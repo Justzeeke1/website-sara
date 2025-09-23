@@ -198,7 +198,7 @@ const Admin = () => {
 
         <TabsContent value="sticker">
           <AdminTable 
-            collectionName="sticker" 
+            collectionName="stickers" 
             title="Gestione Sticker"
             fields={[
               { key: 'id', label: 'ID', type: 'number', showInTable: true },

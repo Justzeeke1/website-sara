@@ -20,9 +20,10 @@ import {
 } from "@/components/ui/carousel";
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import heroImage from "@/assets/WallpaperPatternHomepage.png";
-
 import config from "../configs/config.json";
 import { useTranslation } from "react-i18next";
+
+import { fetchCharms } from "../api/firebase.js";
 
 const fallbackImage = "/placeholder.jpg";
 
@@ -45,24 +46,6 @@ const normalizeImages = (
   if (!imageOrImages) return [];
   if (Array.isArray(imageOrImages)) return imageOrImages;
   return [imageOrImages];
-};
-
-// Fetch function for charms collection
-const fetchCharms = async () => {
-  try {
-    const { dbFirestore } = await import("@/api/firebase");
-    const { collection, getDocs } = await import("firebase/firestore");
-    
-    const querySnapshot = await getDocs(collection(dbFirestore, "charm"));
-    return querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      docId: doc.id,
-      ...doc.data()
-    }));
-  } catch (error) {
-    console.error("Error fetching charms:", error);
-    return [];
-  }
 };
 
 const Charm = () => {

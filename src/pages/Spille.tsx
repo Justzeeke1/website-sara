@@ -23,6 +23,7 @@ import heroImage from "@/assets/WallpaperPatternHomepage.png";
 
 import config from "../configs/config.json";
 import { useTranslation } from "react-i18next";
+import { fetchPins } from "../api/firebase.js";
 
 const fallbackImage = "/placeholder.jpg";
 
@@ -45,24 +46,6 @@ const normalizeImages = (
   if (!imageOrImages) return [];
   if (Array.isArray(imageOrImages)) return imageOrImages;
   return [imageOrImages];
-};
-
-// Fetch function for pins collection
-const fetchPins = async () => {
-  try {
-    const { dbFirestore } = await import("@/api/firebase");
-    const { collection, getDocs } = await import("firebase/firestore");
-    
-    const querySnapshot = await getDocs(collection(dbFirestore, "spille"));
-    return querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      docId: doc.id,
-      ...doc.data()
-    }));
-  } catch (error) {
-    console.error("Error fetching pins:", error);
-    return [];
-  }
 };
 
 const Spille = () => {

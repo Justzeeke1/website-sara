@@ -55,6 +55,7 @@ const AdminTable = ({ collectionName, title, fields }: AdminTableProps) => {
       }));
       setData(items);
     } catch (error) {
+      console.error(error)
       toast({
         title: "Errore",
         description: "Errore durante il caricamento dei dati",
