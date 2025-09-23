@@ -133,10 +133,13 @@ const Admin = () => {
       </div>
 
       <Tabs defaultValue="illustrazioni" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="illustrazioni">Illustrazioni</TabsTrigger>
           <TabsTrigger value="portachiavi">Portachiavi</TabsTrigger>
           <TabsTrigger value="servizi">Servizi</TabsTrigger>
+          <TabsTrigger value="sticker">Sticker</TabsTrigger>
+          <TabsTrigger value="spille">Spille</TabsTrigger>
+          <TabsTrigger value="charm">Charm</TabsTrigger>
         </TabsList>
 
         <TabsContent value="illustrazioni">
@@ -189,6 +192,54 @@ const Admin = () => {
               { key: 'description.en', label: 'Descrizione (EN)', type: 'textarea' },
               { key: 'duration.en', label: 'Durata (EN)', type: 'text' },
               { key: 'price.en', label: 'Prezzo (EN)', type: 'text' },
+            ]}
+          />
+        </TabsContent>
+
+        <TabsContent value="sticker">
+          <AdminTable 
+            collectionName="sticker" 
+            title="Gestione Sticker"
+            fields={[
+              { key: 'id', label: 'ID', type: 'number', showInTable: true },
+              { key: 'title.it', label: 'Titolo (IT)', type: 'text', showInTable: true },
+              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea', showInTable: true },
+              { key: 'available', label: 'Disponibile', type: 'boolean', showInTable: true },
+              { key: 'preorder', label: 'Preordine', type: 'boolean', showInTable: true },
+              { key: 'price', label: 'Prezzo', type: 'number' },
+              { key: 'image', label: 'Immagine', type: 'text' },
+            ]}
+          />
+        </TabsContent>
+
+        <TabsContent value="spille">
+          <AdminTable 
+            collectionName="spille" 
+            title="Gestione Spille"
+            fields={[
+              { key: 'id', label: 'ID', type: 'number', showInTable: true },
+              { key: 'title.it', label: 'Titolo (IT)', type: 'text', showInTable: true },
+              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea', showInTable: true },
+              { key: 'available', label: 'Disponibile', type: 'boolean', showInTable: true },
+              { key: 'preorder', label: 'Preordine', type: 'boolean', showInTable: true },
+              { key: 'price', label: 'Prezzo', type: 'number' },
+              { key: 'image', label: 'Immagine', type: 'text' },
+            ]}
+          />
+        </TabsContent>
+
+        <TabsContent value="charm">
+          <AdminTable 
+            collectionName="charm" 
+            title="Gestione Charm"
+            fields={[
+              { key: 'id', label: 'ID', type: 'number', showInTable: true },
+              { key: 'title.it', label: 'Titolo (IT)', type: 'text', showInTable: true },
+              { key: 'description.it', label: 'Descrizione (IT)', type: 'textarea', showInTable: true },
+              { key: 'available', label: 'Disponibile', type: 'boolean', showInTable: true },
+              { key: 'preorder', label: 'Preordine', type: 'boolean', showInTable: true },
+              { key: 'price', label: 'Prezzo', type: 'number' },
+              { key: 'image', label: 'Immagine', type: 'text' },
             ]}
           />
         </TabsContent>
