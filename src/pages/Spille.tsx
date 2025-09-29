@@ -116,7 +116,7 @@ const Spille = () => {
       {/* Product Cards */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pins.map((pin, index) => {
               const title = pin.title?.[lang] || pin.title?.["en"];
               const description =
@@ -154,7 +154,7 @@ const Spille = () => {
                           src={getImageSrc(mainImage)}
                           alt={title}
                           className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          style={isMobile ? { maxHeight: '200px', height: 'auto' } : {maxHeight: '300px', imageRendering: "crisp-edges"}}
+                          style={isMobile ? { maxHeight: '150px', height: 'auto' } : {maxHeight: '300px', imageRendering: "crisp-edges"}}
                         />
                         {!pin.available && !pin.preorder && (
                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -256,9 +256,9 @@ const Spille = () => {
                       </div>
                     </DialogContent>
                   </Dialog>
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
+                  <CardContent className={isMobile ? "pt-2 pb-4" :"p-6"}>
+                    <div className={isMobile ? "" : "mb-4"}>
+                      <div style={{textAlign : 'center'}}>
                         <h3 className="font-playwrite font-normal text-xl text-foreground mb-2">
                           {title}
                         </h3>

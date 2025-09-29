@@ -116,7 +116,7 @@ const Sticker = () => {
       {/* Product Cards */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {stickers.map((sticker, index) => {
               const title = sticker.title?.[lang] || sticker.title?.["en"];
               const description =
@@ -154,7 +154,7 @@ const Sticker = () => {
                           src={getImageSrc(mainImage)}
                           alt={title}
                           className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          style={isMobile ? { maxHeight: '200px', height: 'auto' } : { maxHeight: '300px', height: 'auto' }}
+                          style={isMobile ? { maxHeight: '150px', height: 'auto' } : { maxHeight: '300px', height: 'auto', imageRendering: "crisp-edges" }}
                         />
                         {!sticker.available && !sticker.preorder && (
                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -253,14 +253,13 @@ const Sticker = () => {
                       </div>
                     </DialogContent>
                   </Dialog>
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="font-playwrite font-normal text-xl text-foreground mb-2">
+                  <CardContent className={isMobile ? "pt-2 pb-4" : "p-6"}>
+                      <div style={{textAlign: 'center'}} className={isMobile ? "" : "mb-4"}>
+                        <h3 className="font-playwrite font-normal text-xl text-foreground mb-2"
+                        style={isMobile ? {fontSize: '1rem'} : {}}>
                           {title}
                         </h3>
                       </div>
-                    </div>
                     <Button
                       className={`w-full ${
                         sticker.available || sticker.preorder
