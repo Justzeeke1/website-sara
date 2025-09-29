@@ -76,12 +76,19 @@ const Charm = () => {
 
   const handleClick = (title: string, preorder: boolean, idToClose?: string) => {
     const message = preorder
-      ? `${t("charms.order.preorderMessage", { defaultValue: "Vorrei preordinare" })} ${title}.`
-      : `${t("charms.order.orderMessage", { defaultValue: "Vorrei ordinare" })} ${title}.`;
+      ? `${t("pins.order.preorderMessage", { defaultValue: "Vorrei preordinare" })} ${title}.`
+      : `${t("pins.order.orderMessage", { defaultValue: "Vorrei ordinare" })} ${title}.`;
 
-    const encodedMessage = encodeURIComponent(message);
-    const link = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
-    window.open(link, "_blank");
+    if (config.stopVendite || preorder) {
+      // Apri WhatsApp
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappLink = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
+      window.open(whatsappLink, "_blank");
+    } else {
+      // Apri link di Vinted
+      window.open(config.vintedShop, "_blank");
+    }
+
     // Chiudi il dialog
     if (idToClose) setOpenDialogId(null);
   };
@@ -213,6 +220,9 @@ const Charm = () => {
                                 </div>
                               )
                             )}
+                            <div className="text-sm text-muted-foreground mt-4 mb-2">
+                              {t("pins.shipping")}
+                            </div>
                             <div className="text-sm text-muted-foreground">
                               {t("charms.priceLabel", {
                                 defaultValue: "Prezzo",

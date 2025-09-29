@@ -79,9 +79,16 @@ const Spille = () => {
       ? `${t("pins.order.preorderMessage", { defaultValue: "Vorrei preordinare" })} ${title}.`
       : `${t("pins.order.orderMessage", { defaultValue: "Vorrei ordinare" })} ${title}.`;
 
-    const encodedMessage = encodeURIComponent(message);
-    const link = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
-    window.open(link, "_blank");
+    if (config.stopVendite || preorder) {
+      // Apri WhatsApp
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappLink = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
+      window.open(whatsappLink, "_blank");
+    } else {
+      // Apri link di Vinted
+      window.open(config.vintedShop, "_blank");
+    }
+
     // Chiudi il dialog
     if (idToClose) setOpenDialogId(null);
   };
@@ -147,7 +154,7 @@ const Spille = () => {
                           src={getImageSrc(mainImage)}
                           alt={title}
                           className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          style={isMobile ? { maxHeight: '200px', height: 'auto' } : {maxHeight: '300px'}}
+                          style={isMobile ? { maxHeight: '200px', height: 'auto' } : {maxHeight: '300px', imageRendering: "crisp-edges"}}
                         />
                         {!pin.available && !pin.preorder && (
                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -210,6 +217,9 @@ const Spille = () => {
                                 </div>
                               )
                             )}
+                            <div className="text-sm text-muted-foreground mt-4 mb-2">
+                              {t("pins.shipping")}
+                            </div>
                             <div className="text-sm text-muted-foreground">
                               {t("pins.priceLabel", {
                                 defaultValue: "Prezzo",

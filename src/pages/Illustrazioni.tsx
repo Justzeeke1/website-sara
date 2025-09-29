@@ -210,19 +210,7 @@ const Illustrazioni = () => {
                             </div>
                           ) : null}
 
-                          {illustration.category?.[lang]?.length ? (
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {illustration.category?.[lang]?.map((cat) => (
-                                <Badge
-                                  key={cat}
-                                  variant="secondary"
-                                  className="bg-gradient-accent text-white"
-                                >
-                                  {cat}
-                                </Badge>
-                              ))}
-                            </div>
-                          ) : null}
+                          
 
                           <div className="space-y-4 mb-6">
                             <label className="text-sm font-medium text-foreground">
@@ -269,17 +257,6 @@ const Illustrazioni = () => {
                       <h3 className="font-playwrite font-normal text-xl text-foreground">
                         {illustration.title?.[lang] || ""}
                       </h3>
-                      <div className="flex space-x-2">
-                        {illustration.category?.[lang]?.map((cat) => (
-                          <Badge
-                            key={cat}
-                            variant="secondary"
-                            className="bg-gradient-accent text-white"
-                          >
-                            {cat}
-                          </Badge>
-                        ))}
-                      </div>
                     </div>
                     <p className="text-muted-foreground">
                       {illustration.description?.[lang] || ""}

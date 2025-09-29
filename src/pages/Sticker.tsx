@@ -76,12 +76,19 @@ const Sticker = () => {
 
   const handleClick = (title: string, preorder: boolean, idToClose?: string) => {
     const message = preorder
-      ? `${t("stickers.order.preorderMessage", { defaultValue: "Vorrei preordinare" })} ${title}.`
-      : `${t("stickers.order.orderMessage", { defaultValue: "Vorrei ordinare" })} ${title}.`;
+      ? `${t("pins.order.preorderMessage", { defaultValue: "Vorrei preordinare" })} ${title}.`
+      : `${t("pins.order.orderMessage", { defaultValue: "Vorrei ordinare" })} ${title}.`;
 
-    const encodedMessage = encodeURIComponent(message);
-    const link = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
-    window.open(link, "_blank");
+    if (config.stopVendite || preorder) {
+      // Apri WhatsApp
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappLink = `https://wa.me/+39${config.phoneNumber}?text=${encodedMessage}`;
+      window.open(whatsappLink, "_blank");
+    } else {
+      // Apri link di Vinted
+      window.open(config.vintedShop, "_blank");
+    }
+
     // Chiudi il dialog
     if (idToClose) setOpenDialogId(null);
   };
@@ -147,7 +154,7 @@ const Sticker = () => {
                           src={getImageSrc(mainImage)}
                           alt={title}
                           className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          style={isMobile ? { maxHeight: '200px', height: 'auto' } : {maxHeight: '300px', height: 'auto'}}
+                          style={isMobile ? { maxHeight: '200px', height: 'auto' } : { maxHeight: '300px', height: 'auto' }}
                         />
                         {!sticker.available && !sticker.preorder && (
                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -207,6 +214,9 @@ const Sticker = () => {
                                 </div>
                               )
                             )}
+                            <div className="text-sm text-muted-foreground mt-4 mb-2">
+                              {t("pins.shipping")}
+                            </div>
                             <div className="text-sm text-muted-foreground">
                               {t("stickers.priceLabel", {
                                 defaultValue: "Prezzo",

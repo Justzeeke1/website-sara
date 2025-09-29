@@ -5,5 +5,7 @@
     "serviceId": "sarademasiart_email_serv",
     "templateIdUser": "template_8nx59dj",
     "templateIdAdmin": "template_vggnihj",
-    "publicKey": "-nKaLV8TLYTUo_A83"
+    "publicKey": "-nKaLV8TLYTUo_A83",
+    "vintedShop": "https://www.vinted.it/member/240858845",
+    "stopVendite": false
 }

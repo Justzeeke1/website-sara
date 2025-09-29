@@ -48,6 +48,7 @@
       "row2": "~5 cm di altezza",
       "row3": "Anello in metallo incluso"
     },
+    "shipping":"N.B. E' disponibile la modalità di ritiro in fiera, consultare le fiere disponibili sul profilo instagram e contattatemi in dm.",
     "features": {
       "title": "Perché scegliere i miei portachiavi?",
       "unique": {
@@ -165,16 +166,17 @@
   },
   "stickers": {
     "title": "Sticker",
-    "subtitle": "Collezione di sticker personalizzati",
+    "subtitle": "Aggiungi colore e stile ai tuoi oggetti quotidiani con i miei sticker in vinile!",
     "priceLabel": "Prezzo",
     "buy": "Acquista",
     "preorder": "Preordina",
     "unavailable": "Non disponibile",
     "details": {
       "row1": "Sticker di alta qualità",
-      "row2": "Resistente all'acqua",
-      "row3": "Facile da applicare"
+      "row2": "Resistente a graffi e acqua",
+      "row3": "Ideali per personalizzare oggetti quotidiani"
     },
+    "shipping":"N.B. E' disponibile la modalità di ritiro in fiera, consultare le fiere disponibili sul profilo instagram e contattatemi in dm.",
     "features": {
       "title": "Caratteristiche",
       "unique": {
@@ -202,16 +204,17 @@
   },
   "pins": {
     "title": "Spille",
-    "subtitle": "Collezione di spille personalizzate",
+    "subtitle": "Piccole opere d’arte da indossare: scopri tutte le spille illustrate e porta un tocco di creatività ovunque!",
     "priceLabel": "Prezzo",
     "buy": "Acquista",
     "preorder": "Preordina",
     "unavailable": "Non disponibile",
     "details": {
-      "row1": "Spilla smaltata di qualità",
-      "row2": "Pin posteriore sicuro",
-      "row3": "Design originale"
+      "row1": "32mm di diametro",
+      "row2": "Base metallica o plastica (secondo forniture)",
+      "row3": "Stampa brillante e resistente"
     },
+    "shipping":"N.B. E' disponibile la modalità di ritiro in fiera, consultare le fiere disponibili sul profilo instagram e contattatemi in dm.",
     "features": {
       "title": "Caratteristiche",
       "unique": {
@@ -247,8 +250,9 @@
     "details": {
       "row1": "Charm acrilico trasparente",
       "row2": "Circa 4cm di altezza",
-      "row3": "Catena inclusa"
+      "row3": "Laccetto incluso"
     },
+    "shipping":"N.B. E' disponibile la modalità di ritiro in fiera, consultare le fiere disponibili sul profilo instagram e contattatemi in dm.",
     "features": {
       "title": "Caratteristiche",
       "unique": {
