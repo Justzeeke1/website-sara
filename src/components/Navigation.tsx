@@ -19,7 +19,7 @@ const Navigation = () => {
     { path: "/portachiavi", label: t('nav.keychains') },
     { path: "/sticker", label: t('nav.stickers', { defaultValue: 'Sticker' }) },
     { path: "/spille", label: t('nav.pins', { defaultValue: 'Spille' }) },
-    { path: "/charm", label: t('nav.charms', { defaultValue: 'Charm' }) },
+    //{ path: "/charm", label: t('nav.charms', { defaultValue: 'Charm' }) },
     { path: "/commissioni", label: t('nav.commissions') },
     { path: "/aboutme", label: t('nav.aboutme') },
   ];

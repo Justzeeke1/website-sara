@@ -47,7 +47,7 @@ export const fetchKeychains = async () => {
         id: doc.id,
         ...doc.data()
       }))
-      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+      .sort((a, b) => a.id - b.id);
 
     return keychains;
   } catch (error) {
@@ -66,7 +66,7 @@ export const fetchServices = async () => {
         id: doc.id,
         ...doc.data()
       }))
-      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+      .sort((a, b) => a.id - b.id);
 
     return services;
   } catch (error) {
@@ -85,7 +85,7 @@ export const fetchCharms = async () => {
         id: doc.id,
         ...doc.data()
       }))
-      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+      .sort((a, b) => a.id - b.id);
 
     return keychains;
   } catch (error) {
@@ -104,7 +104,7 @@ export const fetchPins = async () => {
         id: doc.id,
         ...doc.data()
       }))
-      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+      .sort((a, b) => a.id - b.id);
 
     return keychains;
   } catch (error) {
@@ -123,7 +123,7 @@ export const fetchStickers = async () => {
         id: doc.id,
         ...doc.data()
       }))
-      .sort((a, b) => a.id.localeCompare(b.id)); // Ordinamento per id
+      .sort((a, b) => a.id - b.id);
 
     return keychains;
   } catch (error) {

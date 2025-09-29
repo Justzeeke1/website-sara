@@ -27,7 +27,7 @@ import { fetchPins } from "../api/firebase.js";
 
 const fallbackImage = "/placeholder.jpg";
 
-const imageMap = import.meta.glob("/src/assets/*", {
+const imageMap = import.meta.glob("/src/assets/spille/*", {
   eager: true,
   import: "default",
 });
@@ -147,7 +147,7 @@ const Spille = () => {
                           src={getImageSrc(mainImage)}
                           alt={title}
                           className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          style={isMobile ? { maxHeight: '300px', height: 'auto' } : {}}
+                          style={isMobile ? { maxHeight: '200px', height: 'auto' } : {maxHeight: '300px'}}
                         />
                         {!pin.available && !pin.preorder && (
                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -198,13 +198,10 @@ const Spille = () => {
                           <p className="font-playwrite font-normal mb-6" style={{fontSize: "2rem"}}>
                             {title}
                           </p>
-                          <p className="text-muted-foreground mb-6">
+                          {/* <p className="text-muted-foreground mb-6">
                             {description}
-                          </p>
+                          </p> */}
                           <div className="mb-4">
-                            <p className="mb-6" style={{fontSize: "1.1rem"}}>
-                              {detailDescription}
-                            </p>
                             {Object.entries(t("pins.details", { returnObjects: true, defaultValue: {} })).map(
                               ([key, value]) => (
                                 <div key={key} className="flex items-center mb-2">
@@ -257,7 +254,6 @@ const Spille = () => {
                         </h3>
                       </div>
                     </div>
-                    <p className="text-muted-foreground mb-4">{description}</p>
                     <Button
                       className={`w-full ${
                         pin.available || pin.preorder
