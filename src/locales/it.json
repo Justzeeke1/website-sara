@@ -163,6 +163,117 @@
     "experience": "Anni di Esperienza",
     "projects": "Progetti Completati"
   },
+  "stickers": {
+    "title": "Sticker",
+    "subtitle": "Collezione di sticker personalizzati",
+    "priceLabel": "Prezzo",
+    "buy": "Acquista",
+    "preorder": "Preordina",
+    "unavailable": "Non disponibile",
+    "details": {
+      "row1": "Sticker di alta qualità",
+      "row2": "Resistente all'acqua",
+      "row3": "Facile da applicare"
+    },
+    "features": {
+      "title": "Caratteristiche",
+      "unique": {
+        "title": "Unici",
+        "description": "Ogni sticker è unico e personalizzato"
+      },
+      "durable": {
+        "title": "Resistenti",
+        "description": "Materiali di alta qualità e resistenti"
+      },
+      "shipping": {
+        "title": "Spedizione",
+        "description": "Spedizione veloce e sicura"
+      }
+    },
+    "cta": {
+      "title": "Hai bisogno di sticker personalizzati?",
+      "description": "Contattaci per una commissione personalizzata",
+      "button": "Richiedi Commissione"
+    },
+    "order": {
+      "preorderMessage": "Vorrei preordinare lo sticker",
+      "orderMessage": "Vorrei ordinare lo sticker"
+    }
+  },
+  "pins": {
+    "title": "Spille",
+    "subtitle": "Collezione di spille personalizzate",
+    "priceLabel": "Prezzo",
+    "buy": "Acquista",
+    "preorder": "Preordina",
+    "unavailable": "Non disponibile",
+    "details": {
+      "row1": "Spilla smaltata di qualità",
+      "row2": "Pin posteriore sicuro",
+      "row3": "Design originale"
+    },
+    "features": {
+      "title": "Caratteristiche",
+      "unique": {
+        "title": "Uniche",
+        "description": "Ogni spilla è unica e personalizzata"
+      },
+      "durable": {
+        "title": "Resistenti",
+        "description": "Materiali di alta qualità e resistenti"
+      },
+      "shipping": {
+        "title": "Spedizione",
+        "description": "Spedizione veloce e sicura"
+      }
+    },
+    "cta": {
+      "title": "Hai bisogno di spille personalizzate?",
+      "description": "Contattaci per una commissione personalizzata",
+      "button": "Richiedi Commissione"
+    },
+    "order": {
+      "preorderMessage": "Vorrei preordinare la spilla",
+      "orderMessage": "Vorrei ordinare la spilla"
+    }
+  },
+  "charms": {
+    "title": "Charm",
+    "subtitle": "Collezione di charm personalizzati",
+    "priceLabel": "Prezzo",
+    "buy": "Acquista",
+    "preorder": "Preordina",
+    "unavailable": "Non disponibile",
+    "details": {
+      "row1": "Charm acrilico trasparente",
+      "row2": "Circa 4cm di altezza",
+      "row3": "Catena inclusa"
+    },
+    "features": {
+      "title": "Caratteristiche",
+      "unique": {
+        "title": "Unici",
+        "description": "Ogni charm è unico e personalizzato"
+      },
+      "durable": {
+        "title": "Resistenti",
+        "description": "Materiali di alta qualità e resistenti"
+      },
+      "shipping": {
+        "title": "Spedizione",
+        "description": "Spedizione veloce e sicura"
+      }
+    },
+    "cta": {
+      "title": "Hai bisogno di charm personalizzati?",
+      "description": "Contattaci per una commissione personalizzata",
+      "button": "Richiedi Commissione"
+    },
+    "order": {
+      "preorderMessage": "Vorrei preordinare il charm",
+      "orderMessage": "Vorrei ordinare il charm"
+    }
+  },
   "notFound": {
     "title": "404",
     "message": "Oops! Pagina non trovata",

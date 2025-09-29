@@ -163,6 +163,117 @@
     "experience": "Years of Experience",
     "projects": "Completed Projects"
   },
+  "stickers": {
+    "title": "Stickers",
+    "subtitle": "Collection of personalized stickers",
+    "priceLabel": "Price",
+    "buy": "Buy",
+    "preorder": "Preorder",
+    "unavailable": "Unavailable",
+    "details": {
+      "row1": "High quality sticker",
+      "row2": "Waterproof",
+      "row3": "Easy to apply"
+    },
+    "features": {
+      "title": "Features",
+      "unique": {
+        "title": "Unique",
+        "description": "Each sticker is unique and personalized"
+      },
+      "durable": {
+        "title": "Durable",
+        "description": "High quality and resistant materials"
+      },
+      "shipping": {
+        "title": "Shipping",
+        "description": "Fast and secure shipping"
+      }
+    },
+    "cta": {
+      "title": "Need personalized stickers?",
+      "description": "Contact us for a custom commission",
+      "button": "Request Commission"
+    },
+    "order": {
+      "preorderMessage": "I would like to preorder the sticker",
+      "orderMessage": "I would like to order the sticker"
+    }
+  },
+  "pins": {
+    "title": "Pins",
+    "subtitle": "Collection of personalized pins",
+    "priceLabel": "Price",
+    "buy": "Buy",
+    "preorder": "Preorder",
+    "unavailable": "Unavailable",
+    "details": {
+      "row1": "Quality enamel pin",
+      "row2": "Secure backing pin",
+      "row3": "Original design"
+    },
+    "features": {
+      "title": "Features",
+      "unique": {
+        "title": "Unique",
+        "description": "Each pin is unique and personalized"
+      },
+      "durable": {
+        "title": "Durable",
+        "description": "High quality and resistant materials"
+      },
+      "shipping": {
+        "title": "Shipping",
+        "description": "Fast and secure shipping"
+      }
+    },
+    "cta": {
+      "title": "Need personalized pins?",
+      "description": "Contact us for a custom commission",
+      "button": "Request Commission"
+    },
+    "order": {
+      "preorderMessage": "I would like to preorder the pin",
+      "orderMessage": "I would like to order the pin"
+    }
+  },
+  "charms": {
+    "title": "Charms",
+    "subtitle": "Collection of personalized charms",
+    "priceLabel": "Price",
+    "buy": "Buy",
+    "preorder": "Preorder",
+    "unavailable": "Unavailable",
+    "details": {
+      "row1": "Clear acrylic charm",
+      "row2": "About 4cm height",
+      "row3": "Chain included"
+    },
+    "features": {
+      "title": "Features",
+      "unique": {
+        "title": "Unique",
+        "description": "Each charm is unique and personalized"
+      },
+      "durable": {
+        "title": "Durable",
+        "description": "High quality and resistant materials"
+      },
+      "shipping": {
+        "title": "Shipping",
+        "description": "Fast and secure shipping"
+      }
+    },
+    "cta": {
+      "title": "Need personalized charms?",
+      "description": "Contact us for a custom commission",
+      "button": "Request Commission"
+    },
+    "order": {
+      "preorderMessage": "I would like to preorder the charm",
+      "orderMessage": "I would like to order the charm"
+    }
+  },
   "notFound": {
     "title": "404",
     "message": "Oops! Page not found",
